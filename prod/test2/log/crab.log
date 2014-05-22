@@ -1,0 +1,381 @@
+2014-05-22 12:23:22,952 [DEBUG] 	/cvmfs/cms.cern.ch/crab/CRAB_2_10_5_patch1/python/crab.py -create -submit -cfg crab_MC_test.cfg
+
+2014-05-22 12:23:22,952 [INFO] 	Version 2.10.5_patch1 running on Thu May 22 12:23:22 2014 CET (10:23:22 UTC)
+
+crab. Working options:
+	scheduler           remoteGlidein
+	job type            CMSSW
+	server              OFF
+	working directory   /cmshome/gdimperi/Dijet/CMSSW_6_2_5/src/analysis/DijetAnalysis/prod/test2/
+
+2014-05-22 12:23:22,952 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/cmshome/gdimperi/.cms_crab/allowed_releases.conf].
+2014-05-22 12:23:22,952 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/cmshome/gdimperi/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/cmshome/gdimperi/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger object at 0xac7410>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0xa4f998>}, 'logger': <logging.Logger object at 0xac7410>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /cmshome/gdimperi/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2014-05-22 12:23:22,953 [DEBUG] 	/cmshome/gdimperi/.cms_crab/0_GET_allowed_releases.conf expired, refreshing cache
+2014-05-22 12:23:22,953 [DEBUG] 	getData: 
+	url: /cms/LCG/crab/config/allowed_releases.conf
+	data: {}
+2014-05-22 12:23:23,135 [INFO] 	error detecting glite version 
+2014-05-22 12:23:23,150 [INFO] 	error detecting glite version 
+2014-05-22 12:23:23,150 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0xac7410>, 'conn': <httplib.HTTPSConnection instance at 0xa6fcf8>}, 'logger': <logging.Logger object at 0xac7410>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /cmshome/gdimperi/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2014-05-22 12:23:23,151 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0xac7410>, 'conn': <httplib.HTTPSConnection instance at 0xb3ee60>}, 'logger': <logging.Logger object at 0xac7410>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /cmshome/gdimperi/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2014-05-22 12:23:23,151 [DEBUG] 	Input whitelist: 
+2014-05-22 12:23:23,151 [DEBUG] 	Input blacklist: T0, T1, T3
+2014-05-22 12:23:23,152 [DEBUG] 	/cmshome/gdimperi/.cms_sitedbcache/0_GET_site-names.json expired, refreshing cache
+2014-05-22 12:23:23,152 [DEBUG] 	getData: 
+	url: /sitedb/data/prod/site-names
+	data: {}
+2014-05-22 12:23:23,496 [DEBUG] 	/cmshome/gdimperi/.cms_sitedbcache/0_GET_site-resources.json expired, refreshing cache
+2014-05-22 12:23:23,496 [DEBUG] 	getData: 
+	url: /sitedb/data/prod/site-resources
+	data: {}
+2014-05-22 12:23:23,838 [DEBUG] 	Converted whitelist: 
+2014-05-22 12:23:23,838 [DEBUG] 	Converted blacklist: glite-se.ceres.auckland.ac.nz, uosaf0007.sscc.uos.ac.kr, grid02.hep.by, srm-cms.cern.ch, sebo-t3-01.cr.cnaf.infn.it, fakese.parrot.as, srm.hep.brown.edu, cms-0.mps.ohio-state.edu, se02.marie.hellasgrid.gr, grid002.fi.infn.it, fakese.parrottest.us, umiss005.hep.olemiss.edu, srm-cms-disk.gridpp.rl.ac.uk, ntugrid6.phys.ntu.edu.tw, cmseos.fnal.gov, ndcms.crc.nd.edu, sigmorgh.hpcc.ttu.edu, uscms1-se.fltech-grid3.fit.edu, srm-cms-mss.jinr-t1.ru, phedex.geol.uniovi.es, cms213.phys.utk.edu, cmssrm-kit.gridka.de, hepcms-0.umd.edu, ccsrm.in2p3.fr, cmssrmdisk.fnal.gov, lorienmaster.irb.hr, srmcms.pic.es, srm.hep.fiu.edu, meson.fis.cinvestav.mx, brazil.accre.vanderbilt.edu, t2se01.physics.ox.ac.uk, grid09.phy.pku.edu.cn, se2.grid.lebedev.ru, gridsrm.ts.infn.it, srm2.grid.sinica.edu.tw, hep.pha.jhu.edu, cms-se.hep.uprm.edu, lyogrid06.in2p3.fr, ntugrid4.phys.ntu.edu.tw, se.tier3.ucdavis.edu, se1.particles.ipm.ac.ir, osg-se.cac.cornell.edu, srm.brazos.tamu.edu, ttgrid04.ci.northwestern.edu, bonner-grid.rice.edu, srm-cms.jinr-t1.ru, storm-fe-cms.cr.cnaf.infn.it, se.hep.fsu.edu, gc1-se.spa.umn.edu, gridse2.pg.infn.it, u2-grid.ccr.buffalo.edu, moboro.uniandes.edu.co, ruhex-osgce.rutgers.edu, srm-eoscms.cern.ch, cmsse02.na.infn.it, se03.esc.qmul.ac.uk, grow-grid.its.uiowa.edu, t3serv006.mit.edu, svr018.gla.scotgrid.ac.uk, srm.glite.ecdf.ed.ac.uk, cmssw.princeton.edu, fakese.parrot.eu, osg-hep.phys.virginia.edu, storm.mib.infn.it, cmssrm.fnal.gov, srm-cms.gridpp.rl.ac.uk, grid71.phy.ncu.edu.tw, fakese.parrot.us, grid07.phy.pku.edu.cn, cms-xen19.fnal.gov, charm.ucr.edu, lcg-dpm01.hep.ucl.ac.uk, se01.marie.hellasgrid.gr, se2.ppgrid1.rhul.ac.uk, kodiak-se.baylor.edu, t3se01.psi.ch, hepse01.colorado.edu
+2014-05-22 12:23:23,838 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/cmshome/gdimperi/.cms_crab/myproxy_server.conf].
+2014-05-22 12:23:23,838 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/cmshome/gdimperi/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/cmshome/gdimperi/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger object at 0xac7410>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0xb39248>}, 'logger': <logging.Logger object at 0xac7410>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /cmshome/gdimperi/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2014-05-22 12:23:23,838 [DEBUG] 	/cmshome/gdimperi/.cms_crab/0_GET_myproxy_server.conf expired, refreshing cache
+2014-05-22 12:23:23,838 [DEBUG] 	getData: 
+	url: /cms/LCG/crab/config/myproxy_server.conf
+	data: {}
+2014-05-22 12:23:23,878 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/cmshome/gdimperi/.cms_crab/site_black_list.conf].
+2014-05-22 12:23:23,878 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/cmshome/gdimperi/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/cmshome/gdimperi/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger object at 0xac7410>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0xb39248>}, 'logger': <logging.Logger object at 0xac7410>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /cmshome/gdimperi/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2014-05-22 12:23:23,879 [DEBUG] 	/cmshome/gdimperi/.cms_crab/0_GET_site_black_list.conf expired, refreshing cache
+2014-05-22 12:23:23,879 [DEBUG] 	getData: 
+	url: /cms/LCG/crab/config/site_black_list.conf
+	data: {}
+2014-05-22 12:23:23,916 [DEBUG] 	Enforced black list: TAPE,srm-cms.cern.ch,cmssrm.fnal.gov,T1_FR,T1_RU,T1_TW,cmseos.fnal.gov,cmsdca2.fnal.gov,T2_PK_NCP,T3_US_Vanderbilt_EC2
+ 
+2014-05-22 12:23:27,508 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'cacheduration': 24, 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0xac7410>, 'conn': <httplib.HTTPSConnection instance at 0xb393f8>}, 'logger': <logging.Logger object at 0xac7410>, 'cacheduration': 24, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /cmshome/gdimperi/.cms_sitedbcache (duration 24 hours, max reuse 24.0 hours)
+2014-05-22 12:23:27,568 [DEBUG] 	Linux cmsrm-ui03.roma1.infn.it 2.6.32-358.23.2.el6.x86_64 #1 SMP Wed Oct 16 11:13:47 CDT 2013 x86_64 x86_64 x86_64 GNU/Linux
+ 
+Used properties:
+Linux cmsrm-ui03.roma1.infn.it 2.6.32-358.23.2.el6.x86_64 #1 SMP Wed Oct 16 11:13:47 CDT 2013 x86_64 x86_64 x86_64 GNU/Linux
+ 
+Used properties:
+   CMSSW.allow_nonproductioncmssw : 1
+   CMSSW.datasetpath : /RSGravToJJ_kMpl01_M-1000_Tune4C_13TeV-pythia8/Fall13dr-tsg_PU20bx25_POSTLS162_V2-v1/AODSIM
+   CMSSW.events_per_job : 28000
+   CMSSW.output_file : dijetTree_signal.root
+   CMSSW.pset : flat-signal-cfg_giulia.py
+   CMSSW.total_number_of_events : -1
+   CRAB.cfg : crab_MC_test.cfg
+   CRAB.create : 
+   CRAB.jobtype : cmssw
+   CRAB.scheduler : remoteGlidein
+   CRAB.submit : 
+   CRAB.use_server : 0
+   GRID.rb : CERN
+   GRID.se_black_list : T0,T1,T3
+   GRID.virtual_organization : cms
+   USER.check_user_remote_dir : 1
+   USER.copy_data : 1
+   USER.email : giulia.dimperio@roma1.infn.it
+   USER.publish_data : 0
+   USER.return_data : 0
+   USER.storage_element : T2_IT_Rome
+   USER.ui_working_dir : test2/
+   USER.user_remote_dir : /test/
+End of used properties.
+
+2014-05-22 12:23:27,632 [DEBUG] 	CMSSW::__init__
+2014-05-22 12:23:27,633 [DEBUG] 	Scram::Scram() version is 2
+2014-05-22 12:23:27,633 [DEBUG] 	Scram::Scram() arch is slc6_amd64_gcc472
+2014-05-22 12:23:27,633 [DEBUG] 	Downloading file [https://cmssdt.cern.ch/SDT/cgi-bin] to [/cmshome/gdimperi/.cms_crab/ReleasesXML?anytype=1].
+2014-05-22 12:23:27,634 [DEBUG] 	Service initialised ({'endpoint': 'https://cmssdt.cern.ch/SDT/cgi-bin', 'maxcachereuse': 24.0, 'cachepath': '/cmshome/gdimperi/.cms_crab', 'basepath': '/SDT/cgi-bin/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'https://cmssdt.cern.ch/SDT/cgi-bin', 'timeout': 20, 'cachepath': '/cmshome/gdimperi/.cms_crab', 'cacheduration': 0.5, 'host': 'cmssdt.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger object at 0xac7410>, 'type': 'txt/csv', 'conn': <httplib.HTTPSConnection instance at 0xe8ec68>}, 'logger': <logging.Logger object at 0xac7410>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmssdt.cern.ch, basepath: /SDT/cgi-bin/ (text/html)
+	 cache: /cmshome/gdimperi/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2014-05-22 12:23:27,634 [DEBUG] 	/cmshome/gdimperi/.cms_crab/0_GET_ReleasesXML?anytype=1 expired, refreshing cache
+2014-05-22 12:23:27,634 [DEBUG] 	getData: 
+	url: /SDT/cgi-bin/ReleasesXML?anytype=1
+	data: {}
+2014-05-22 12:23:27,968 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0xac7410>, 'conn': <httplib.HTTPSConnection instance at 0xe78cb0>}, 'logger': <logging.Logger object at 0xac7410>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /cmshome/gdimperi/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2014-05-22 12:23:27,968 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0xac7410>, 'conn': <httplib.HTTPSConnection instance at 0xe8ec20>}, 'logger': <logging.Logger object at 0xac7410>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /cmshome/gdimperi/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2014-05-22 12:23:27,969 [DEBUG] 	Input whitelist: 
+2014-05-22 12:23:27,969 [DEBUG] 	Input blacklist: 
+2014-05-22 12:23:27,969 [DEBUG] 	Converted whitelist: 
+2014-05-22 12:23:27,969 [DEBUG] 	Converted blacklist: 
+2014-05-22 12:23:27,988 [INFO] 	Contacting Data Discovery Services ...
+2014-05-22 12:23:27,988 [INFO] 	Accessing DBS at: https://cmsweb.cern.ch/dbs/prod/global/DBSReader
+2014-05-22 12:23:27,988 [INFO] 	Will do Data Discovery using  DBS3
+2014-05-22 12:23:29,974 [INFO] 	DBS3 lookup took  1.92 sec
+2014-05-22 12:23:30,023 [INFO] 	Datatype is mc
+2014-05-22 12:23:30,024 [DEBUG] 	DLS interface: DLS_TYPE_PHEDEX Server https://cmsweb.cern.ch/phedex/datasvc/xml/prod/
+2014-05-22 12:23:30,370 [INFO] 	Requested dataset: /RSGravToJJ_kMpl01_M-1000_Tune4C_13TeV-pythia8/Fall13dr-tsg_PU20bx25_POSTLS162_V2-v1/AODSIM has 197180 events in 7 blocks.
+
+2014-05-22 12:23:30,370 [DEBUG] 	Job splitting method: EventBased
+2014-05-22 12:23:30,370 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/cmshome/gdimperi/.cms_crab/site_black_list.conf].
+2014-05-22 12:23:30,370 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/cmshome/gdimperi/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/cmshome/gdimperi/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger object at 0xac7410>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0xe87320>}, 'logger': <logging.Logger object at 0xac7410>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /cmshome/gdimperi/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2014-05-22 12:23:30,371 [DEBUG] 	Enforced black list: ['TAPE', 'srm-cms.cern.ch', 'cmssrm.fnal.gov', 'T1_FR', 'T1_RU', 'T1_TW', 'cmseos.fnal.gov', 'cmsdca2.fnal.gov', 'T2_PK_NCP', 'T3_US_Vanderbilt_EC2'] 
+2014-05-22 12:23:30,371 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0xac7410>, 'conn': <httplib.HTTPSConnection instance at 0xe87488>}, 'logger': <logging.Logger object at 0xac7410>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /cmshome/gdimperi/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2014-05-22 12:23:30,372 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0xac7410>, 'conn': <httplib.HTTPSConnection instance at 0xd0aa70>}, 'logger': <logging.Logger object at 0xac7410>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /cmshome/gdimperi/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2014-05-22 12:23:30,372 [DEBUG] 	Input whitelist: 
+2014-05-22 12:23:30,372 [DEBUG] 	Input blacklist: T0, T1, T3, TAPE, srm-cms.cern.ch, cmssrm.fnal.gov, T1_FR, T1_RU, T1_TW, cmseos.fnal.gov, cmsdca2.fnal.gov, T2_PK_NCP, T3_US_Vanderbilt_EC2
+2014-05-22 12:23:30,408 [DEBUG] 	Converted whitelist: 
+2014-05-22 12:23:30,408 [DEBUG] 	Converted blacklist: glite-se.ceres.auckland.ac.nz, uosaf0007.sscc.uos.ac.kr, grid02.hep.by, srm-cms.cern.ch, sebo-t3-01.cr.cnaf.infn.it, fakese.parrot.as, srm.hep.brown.edu, cms-0.mps.ohio-state.edu, se02.marie.hellasgrid.gr, grid002.fi.infn.it, fakese.parrottest.us, umiss005.hep.olemiss.edu, srm-cms-disk.gridpp.rl.ac.uk, ntugrid6.phys.ntu.edu.tw, cmseos.fnal.gov, ndcms.crc.nd.edu, sigmorgh.hpcc.ttu.edu, uscms1-se.fltech-grid3.fit.edu, srm-cms-mss.jinr-t1.ru, phedex.geol.uniovi.es, cms213.phys.utk.edu, cmssrm-kit.gridka.de, hepcms-0.umd.edu, ccsrm.in2p3.fr, cmssrmdisk.fnal.gov, lorienmaster.irb.hr, srmcms.pic.es, srm.hep.fiu.edu, meson.fis.cinvestav.mx, brazil.accre.vanderbilt.edu, t2se01.physics.ox.ac.uk, grid09.phy.pku.edu.cn, se2.grid.lebedev.ru, pcncp22.ncp.edu.pk, gridsrm.ts.infn.it, cmsdca2.fnal.gov, srm2.grid.sinica.edu.tw, hep.pha.jhu.edu, cms-se.hep.uprm.edu, lyogrid06.in2p3.fr, ntugrid4.phys.ntu.edu.tw, se.tier3.ucdavis.edu, se1.particles.ipm.ac.ir, osg-se.cac.cornell.edu, srm.brazos.tamu.edu, ttgrid04.ci.northwestern.edu, bonner-grid.rice.edu, srm-cms.jinr-t1.ru, storm-fe-cms.cr.cnaf.infn.it, se.hep.fsu.edu, gc1-se.spa.umn.edu, gridse2.pg.infn.it, u2-grid.ccr.buffalo.edu, moboro.uniandes.edu.co, ruhex-osgce.rutgers.edu, srm-eoscms.cern.ch, cmsse02.na.infn.it, se03.esc.qmul.ac.uk, grow-grid.its.uiowa.edu, t3serv006.mit.edu, svr018.gla.scotgrid.ac.uk, srm.glite.ecdf.ed.ac.uk, cmssw.princeton.edu, fakese.parrot.eu, osg-hep.phys.virginia.edu, storm.mib.infn.it, cmssrm.fnal.gov, srm-cms.gridpp.rl.ac.uk, grid71.phy.ncu.edu.tw, fakese.parrot.us, grid07.phy.pku.edu.cn, cms-xen19.fnal.gov, charm.ucr.edu, TAPE, lcg-dpm01.hep.ucl.ac.uk, se01.marie.hellasgrid.gr, se2.ppgrid1.rhul.ac.uk, kodiak-se.baylor.edu, t3se01.psi.ch, hepse01.colorado.edu
+2014-05-22 12:23:30,408 [INFO] 	SE black list applied to data location: ['T0', 'T1', 'T3', 'TAPE', 'srm-cms.cern.ch', 'cmssrm.fnal.gov', 'T1_FR', 'T1_RU', 'T1_TW', 'cmseos.fnal.gov', 'cmsdca2.fnal.gov', 'T2_PK_NCP', 'T3_US_Vanderbilt_EC2']
+2014-05-22 12:23:30,408 [DEBUG] 	List of blocks and used locations (SE):
+2014-05-22 12:23:30,433 [DEBUG] 	/RSGravToJJ_kMpl01_M-1000_Tune4C_13TeV-pythia8/Fall13dr-tsg_PU20bx25_POSTLS162_V2-v1/AODSIM#0052e6c2-6ef6-11e3-b1c2-003048f02d38 : ['cmsrm-se01.roma1.infn.it']
+2014-05-22 12:23:30,440 [DEBUG] 	/RSGravToJJ_kMpl01_M-1000_Tune4C_13TeV-pythia8/Fall13dr-tsg_PU20bx25_POSTLS162_V2-v1/AODSIM#bd6db546-70dd-11e3-a330-003048f02c8a : ['cmsrm-se01.roma1.infn.it']
+2014-05-22 12:23:30,441 [DEBUG] 	/RSGravToJJ_kMpl01_M-1000_Tune4C_13TeV-pythia8/Fall13dr-tsg_PU20bx25_POSTLS162_V2-v1/AODSIM#b57621d8-7124-11e3-b1c2-003048f02d38 : ['cmsrm-se01.roma1.infn.it']
+2014-05-22 12:23:30,442 [DEBUG] 	/RSGravToJJ_kMpl01_M-1000_Tune4C_13TeV-pythia8/Fall13dr-tsg_PU20bx25_POSTLS162_V2-v1/AODSIM#2a5f43f6-79d3-11e3-b3a1-00221959e69e : ['cmsrm-se01.roma1.infn.it']
+2014-05-22 12:23:30,443 [DEBUG] 	/RSGravToJJ_kMpl01_M-1000_Tune4C_13TeV-pythia8/Fall13dr-tsg_PU20bx25_POSTLS162_V2-v1/AODSIM#172907ba-71ca-11e3-a330-003048f02c8a : ['cmsrm-se01.roma1.infn.it']
+2014-05-22 12:23:30,443 [DEBUG] 	/RSGravToJJ_kMpl01_M-1000_Tune4C_13TeV-pythia8/Fall13dr-tsg_PU20bx25_POSTLS162_V2-v1/AODSIM#b0a90514-7050-11e3-b1c2-003048f02d38 : ['cmsrm-se01.roma1.infn.it']
+2014-05-22 12:23:30,444 [DEBUG] 	/RSGravToJJ_kMpl01_M-1000_Tune4C_13TeV-pythia8/Fall13dr-tsg_PU20bx25_POSTLS162_V2-v1/AODSIM#dd303478-6f91-11e3-b1c2-003048f02d38 : ['cmsrm-se01.roma1.infn.it']
+2014-05-22 12:23:30,444 [DEBUG] 	Events in Block File 77764
+2014-05-22 12:23:30,493 [DEBUG] 	Events in Block File 45184
+2014-05-22 12:23:30,494 [DEBUG] 	Events in Block File 7708
+2014-05-22 12:23:30,494 [DEBUG] 	Events in Block File 10340
+2014-05-22 12:23:30,500 [DEBUG] 	Events in Block File 28888
+2014-05-22 12:23:30,500 [DEBUG] 	Events in Block File 7908
+2014-05-22 12:23:30,500 [DEBUG] 	Events in Block File 19388
+2014-05-22 12:23:30,501 [DEBUG] 	
+Job 11 can run over 19388 events.
+Job 11 Destination: ['T2_IT_Rome']
+
+2014-05-22 12:23:30,501 [INFO] 	11 job(s) can run on 197180 events.
+
+2014-05-22 12:23:30,501 [DEBUG] 	Selected sites for block /RSGravToJJ_kMpl01_M-1000_Tune4C_13TeV-pythia8/Fall13dr-tsg_PU20bx25_POSTLS162_V2-v1/AODSIM#0052e6c2-6ef6-11e3-b1c2-003048f02d38 via blacklist are cmsrm-se01.roma1.infn.it.
+
+2014-05-22 12:23:30,502 [DEBUG] 	Selected sites for block /RSGravToJJ_kMpl01_M-1000_Tune4C_13TeV-pythia8/Fall13dr-tsg_PU20bx25_POSTLS162_V2-v1/AODSIM#bd6db546-70dd-11e3-a330-003048f02c8a via blacklist are cmsrm-se01.roma1.infn.it.
+
+2014-05-22 12:23:30,503 [DEBUG] 	Selected sites for block /RSGravToJJ_kMpl01_M-1000_Tune4C_13TeV-pythia8/Fall13dr-tsg_PU20bx25_POSTLS162_V2-v1/AODSIM#b57621d8-7124-11e3-b1c2-003048f02d38 via blacklist are cmsrm-se01.roma1.infn.it.
+
+2014-05-22 12:23:30,504 [DEBUG] 	Selected sites for block /RSGravToJJ_kMpl01_M-1000_Tune4C_13TeV-pythia8/Fall13dr-tsg_PU20bx25_POSTLS162_V2-v1/AODSIM#2a5f43f6-79d3-11e3-b3a1-00221959e69e via blacklist are cmsrm-se01.roma1.infn.it.
+
+2014-05-22 12:23:30,504 [DEBUG] 	Selected sites for block /RSGravToJJ_kMpl01_M-1000_Tune4C_13TeV-pythia8/Fall13dr-tsg_PU20bx25_POSTLS162_V2-v1/AODSIM#172907ba-71ca-11e3-a330-003048f02c8a via blacklist are cmsrm-se01.roma1.infn.it.
+
+2014-05-22 12:23:30,505 [DEBUG] 	Selected sites for block /RSGravToJJ_kMpl01_M-1000_Tune4C_13TeV-pythia8/Fall13dr-tsg_PU20bx25_POSTLS162_V2-v1/AODSIM#b0a90514-7050-11e3-b1c2-003048f02d38 via blacklist are cmsrm-se01.roma1.infn.it.
+
+2014-05-22 12:23:30,506 [DEBUG] 	Selected sites for block /RSGravToJJ_kMpl01_M-1000_Tune4C_13TeV-pythia8/Fall13dr-tsg_PU20bx25_POSTLS162_V2-v1/AODSIM#dd303478-6f91-11e3-b1c2-003048f02d38 via blacklist are cmsrm-se01.roma1.infn.it.
+
+2014-05-22 12:23:30,509 [INFO] 	List of jobs and available destination sites:
+
+Block     1: jobs                  1-3: sites: T2_IT_Rome
+Block     2: jobs                  4-5: sites: T2_IT_Rome
+Block     3: jobs                    6: sites: T2_IT_Rome
+Block     4: jobs                    7: sites: T2_IT_Rome
+Block     5: jobs                  8-9: sites: T2_IT_Rome
+Block     6: jobs                   10: sites: T2_IT_Rome
+Block     7: jobs                   11: sites: T2_IT_Rome
+
+2014-05-22 12:23:30,538 [DEBUG] 	PsetManipulator::__init__: PSet file = flat-signal-cfg_giulia.py
+2014-05-22 12:23:30,779 [DEBUG] 	Output from TFileService dijetTree_signal.root already in output files
+2014-05-22 12:23:30,828 [DEBUG] 	lib /cmshome/gdimperi/Dijet/CMSSW_6_2_5/lib to be tarred
+2014-05-22 12:23:31,140 [DEBUG] 	Creator: JobType CMSSW created
+2014-05-22 12:23:31,140 [DEBUG] 	Creator: total # of jobs = 11
+2014-05-22 12:23:31,140 [DEBUG] 	Creator constructor finished
+2014-05-22 12:23:31,289 [DEBUG] 	parseRange_ None
+2014-05-22 12:23:31,295 [DEBUG] 	Scram::Scram() version is 2
+2014-05-22 12:23:31,296 [DEBUG] 	Scram::Scram() arch is slc6_amd64_gcc472
+2014-05-22 12:23:31,296 [DEBUG] 	Creator::run() called
+2014-05-22 12:23:31,296 [DEBUG] 	Scram::Scram() version is 2
+2014-05-22 12:23:31,296 [DEBUG] 	Scram::Scram() arch is slc6_amd64_gcc472
+2014-05-22 12:23:31,775 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'cacheduration': 24, 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0xac7410>, 'conn': <httplib.HTTPSConnection instance at 0xcfd9e0>}, 'logger': <logging.Logger object at 0xac7410>, 'cacheduration': 24, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /cmshome/gdimperi/.cms_sitedbcache (duration 24 hours, max reuse 24.0 hours)
+2014-05-22 12:23:32,513 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'cacheduration': 24, 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0xac7410>, 'conn': <httplib.HTTPSConnection instance at 0xcecd40>}, 'logger': <logging.Logger object at 0xac7410>, 'cacheduration': 24, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /cmshome/gdimperi/.cms_sitedbcache (duration 24 hours, max reuse 24.0 hours)
+2014-05-22 12:23:32,834 [INFO] 	Checking remote location
+2014-05-22 12:23:32,834 [DEBUG] 	protocol = srm-lcg
+endpoint = srm://cmsrm-se01.roma1.infn.it:8443/srm/managerv2?SFN=/pnfs/roma1.infn.it/data/cms/store/user/gdimperi/test/
+
+2014-05-22 12:23:32,971 [DEBUG] 	Command:	unset LD_LIBRARY_PATH; unset GLITE_ENV_SET; export PATH=/usr/bin:/bin; source /etc/profile; source /usr/libexec/grid-env.sh ; lcg-ls -d -b -D srmv2 srm://cmsrm-se01.roma1.infn.it:8443/srm/managerv2?SFN=/pnfs/roma1.infn.it/data/cms/store/user/gdimperi/test/
+2014-05-22 12:23:32,971 [DEBUG] 	ExitCode:	0
+2014-05-22 12:23:32,971 [DEBUG] 	Output:	/pnfs/roma1.infn.it/data/cms/store/user/gdimperi/test/
+
+2014-05-22 12:23:32,971 [INFO] 	WARNING: The stageout directory already exists. Be careful not to accidentally mix outputs from different tasks
+2014-05-22 12:23:33,033 [INFO] 	Creating 11 jobs, please wait...
+2014-05-22 12:23:33,033 [DEBUG] 	Creation Time: 1.73765897751
+2014-05-22 12:23:33,034 [INFO] 	Total of 11 jobs created.
+
+2014-05-22 12:23:33,034 [DEBUG] 	Submitter::run() called
+2014-05-22 12:23:33,039 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0xac7410>, 'conn': <httplib.HTTPSConnection instance at 0xcf8638>}, 'logger': <logging.Logger object at 0xac7410>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /cmshome/gdimperi/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2014-05-22 12:23:33,040 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0xac7410>, 'conn': <httplib.HTTPSConnection instance at 0x1146518>}, 'logger': <logging.Logger object at 0xac7410>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /cmshome/gdimperi/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2014-05-22 12:23:33,040 [DEBUG] 	Input whitelist: 
+2014-05-22 12:23:33,040 [DEBUG] 	Input blacklist: T0, T1, T3
+2014-05-22 12:23:33,048 [DEBUG] 	Converted whitelist: 
+2014-05-22 12:23:33,048 [DEBUG] 	Converted blacklist: glite-se.ceres.auckland.ac.nz, uosaf0007.sscc.uos.ac.kr, grid02.hep.by, srm-cms.cern.ch, sebo-t3-01.cr.cnaf.infn.it, fakese.parrot.as, srm.hep.brown.edu, cms-0.mps.ohio-state.edu, se02.marie.hellasgrid.gr, grid002.fi.infn.it, fakese.parrottest.us, umiss005.hep.olemiss.edu, srm-cms-disk.gridpp.rl.ac.uk, ntugrid6.phys.ntu.edu.tw, cmseos.fnal.gov, ndcms.crc.nd.edu, sigmorgh.hpcc.ttu.edu, uscms1-se.fltech-grid3.fit.edu, srm-cms-mss.jinr-t1.ru, phedex.geol.uniovi.es, cms213.phys.utk.edu, cmssrm-kit.gridka.de, hepcms-0.umd.edu, ccsrm.in2p3.fr, cmssrmdisk.fnal.gov, lorienmaster.irb.hr, srmcms.pic.es, srm.hep.fiu.edu, meson.fis.cinvestav.mx, brazil.accre.vanderbilt.edu, t2se01.physics.ox.ac.uk, grid09.phy.pku.edu.cn, se2.grid.lebedev.ru, gridsrm.ts.infn.it, srm2.grid.sinica.edu.tw, hep.pha.jhu.edu, cms-se.hep.uprm.edu, lyogrid06.in2p3.fr, ntugrid4.phys.ntu.edu.tw, se.tier3.ucdavis.edu, se1.particles.ipm.ac.ir, osg-se.cac.cornell.edu, srm.brazos.tamu.edu, ttgrid04.ci.northwestern.edu, bonner-grid.rice.edu, srm-cms.jinr-t1.ru, storm-fe-cms.cr.cnaf.infn.it, se.hep.fsu.edu, gc1-se.spa.umn.edu, gridse2.pg.infn.it, u2-grid.ccr.buffalo.edu, moboro.uniandes.edu.co, ruhex-osgce.rutgers.edu, srm-eoscms.cern.ch, cmsse02.na.infn.it, se03.esc.qmul.ac.uk, grow-grid.its.uiowa.edu, t3serv006.mit.edu, svr018.gla.scotgrid.ac.uk, srm.glite.ecdf.ed.ac.uk, cmssw.princeton.edu, fakese.parrot.eu, osg-hep.phys.virginia.edu, storm.mib.infn.it, cmssrm.fnal.gov, srm-cms.gridpp.rl.ac.uk, grid71.phy.ncu.edu.tw, fakese.parrot.us, grid07.phy.pku.edu.cn, cms-xen19.fnal.gov, charm.ucr.edu, lcg-dpm01.hep.ucl.ac.uk, se01.marie.hellasgrid.gr, se2.ppgrid1.rhul.ac.uk, kodiak-se.baylor.edu, t3se01.psi.ch, hepse01.colorado.edu
+2014-05-22 12:23:33,048 [DEBUG] 	nsjobs -1
+2014-05-22 12:23:33,048 [DEBUG] 	Total jobs 11
+2014-05-22 12:23:33,061 [DEBUG] 	nj_list [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+2014-05-22 12:23:33,428 [DEBUG] 	GRIDNAME: /C=IT/O=INFN/OU=Personal Certificate/L=Roma 1/CN=Giulia Dimperio 
+2014-05-22 12:23:33,790 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'cacheduration': 24, 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0xac7410>, 'conn': <httplib.HTTPSConnection instance at 0xcfabd8>}, 'logger': <logging.Logger object at 0xac7410>, 'cacheduration': 24, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /cmshome/gdimperi/.cms_sitedbcache (duration 24 hours, max reuse 24.0 hours)
+2014-05-22 12:23:34,194 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'cacheduration': 24, 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0xac7410>, 'conn': <httplib.HTTPSConnection instance at 0xd0aa70>}, 'logger': <logging.Logger object at 0xac7410>, 'cacheduration': 24, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /cmshome/gdimperi/.cms_sitedbcache (duration 24 hours, max reuse 24.0 hours)
+2014-05-22 12:23:34,233 [DEBUG] 	Submission DashBoard Pre-Submission report: {'ApplicationVersion': 'CMSSW_6_2_5', 'taskId': 'gdimperi_test2_7d6ea1', 'resubmitter': 'user', 'tool': 'crab', 'vo': 'cms', 'tool_ui': 'cmsrm-ui03.roma1.infn.it', 'JSToolVersion': '2.10.5_patch1', 'user': 'gdimperi', 'scheduler': 'GLIDEIN', 'taskType': 'analysis', 'CMSUser': 'gdimperi', 'jobId': 'TaskMeta', 'datasetFull': '/RSGravToJJ_kMpl01_M-1000_Tune4C_13TeV-pythia8/Fall13dr-tsg_PU20bx25_POSTLS162_V2-v1/AODSIM', 'exe': 'cmsRun', 'GridName': '/C=IT/O=INFN/OU=Personal Certificate/L=Roma 1/CN=Giulia Dimperio', 'SubmissionType': 'direct'}
+2014-05-22 12:23:34,233 [INFO] 	Checking available resources...
+2014-05-22 12:23:34,244 [INFO] 	Found  compatible site(s) for job 1
+2014-05-22 12:23:34,244 [INFO] 	1 blocks of jobs will be submitted
+2014-05-22 12:23:34,244 [DEBUG] 	Delegating proxy 
+2014-05-22 12:23:34,244 [DEBUG] 	Submitting jobs [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+2014-05-22 12:23:34,275 [DEBUG] 	Calling ServerConfig default
+2014-05-22 12:23:34,276 [DEBUG] 	getting serverlist from web
+2014-05-22 12:23:34,276 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/cmshome/gdimperi/.cms_crab/AvailableServerList].
+2014-05-22 12:23:34,276 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/cmshome/gdimperi/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/cmshome/gdimperi/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger object at 0xac7410>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x10ccf80>}, 'logger': <logging.Logger object at 0xac7410>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /cmshome/gdimperi/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2014-05-22 12:23:34,276 [DEBUG] 	/cmshome/gdimperi/.cms_crab/0_GET_AvailableServerList expired, refreshing cache
+2014-05-22 12:23:34,276 [DEBUG] 	getData: 
+	url: /cms/LCG/crab/config/AvailableServerList
+	data: {}
+2014-05-22 12:23:34,315 [DEBUG] 	All avaialble servers: [['cern_vocms20', '2.8.4-', 'remoteGlidein'], ['cern_vocms83', '2.8.4-', 'remoteGlidein'], ['unl_hcc-crabserver', '2.8.4-', 'remoteGlidein'], ['unl_hcc-crabserver', '2.8.4-', 'remoteGlidein'], ['unl_hcc-crabserver', '2.8.4-', 'remoteGlidein'], ['ucsd_submit-4', '2.8.4-', 'remoteGlidein'], ['ucsd_submit-4', '2.8.4-', 'remoteGlidein'], ['ucsd_submit-4', '2.8.4-', 'remoteGlidein'], ['ucsd_submit-6', '2.8.4-', 'remoteGlidein'], ['ucsd_submit-6', '2.8.4-', 'remoteGlidein'], ['ucsd_submit-6', '2.8.4-', 'remoteGlidein']]
+2014-05-22 12:23:34,315 [DEBUG] 	All avaialble servers compatible with 2.10.5_patch1: ['cern_vocms20', 'cern_vocms83', 'unl_hcc-crabserver', 'unl_hcc-crabserver', 'unl_hcc-crabserver', 'ucsd_submit-4', 'ucsd_submit-4', 'ucsd_submit-4', 'ucsd_submit-6', 'ucsd_submit-6', 'ucsd_submit-6']
+2014-05-22 12:23:34,315 [DEBUG] 	Avaialble servers: ['cern_vocms20', 'cern_vocms83', 'unl_hcc-crabserver', 'unl_hcc-crabserver', 'unl_hcc-crabserver', 'ucsd_submit-4', 'ucsd_submit-4', 'ucsd_submit-4', 'ucsd_submit-6', 'ucsd_submit-6', 'ucsd_submit-6'] choosen: unl_hcc-crabserver
+2014-05-22 12:23:34,315 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/cmshome/gdimperi/.cms_crab/server_unl_hcc-crabserver.conf].
+2014-05-22 12:23:34,316 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/cmshome/gdimperi/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/cmshome/gdimperi/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger object at 0xac7410>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x10cccf8>}, 'logger': <logging.Logger object at 0xac7410>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /cmshome/gdimperi/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2014-05-22 12:23:34,316 [DEBUG] 	/cmshome/gdimperi/.cms_crab/0_GET_server_unl_hcc-crabserver.conf expired, refreshing cache
+2014-05-22 12:23:34,316 [DEBUG] 	getData: 
+	url: /cms/LCG/crab/config/server_unl_hcc-crabserver.conf
+	data: {}
+2014-05-22 12:23:34,355 [INFO] 	remotehost from Avail.List = hcc-crabserver.unl.edu
+2014-05-22 12:23:34,382 [DEBUG] 	Scram::Scram() version is 2
+2014-05-22 12:23:34,382 [DEBUG] 	Scram::Scram() arch is slc6_amd64_gcc472
+2014-05-22 12:23:34,742 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'cacheduration': 24, 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0xac7410>, 'conn': <httplib.HTTPSConnection instance at 0xceb5a8>}, 'logger': <logging.Logger object at 0xac7410>, 'cacheduration': 24, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /cmshome/gdimperi/.cms_sitedbcache (duration 24 hours, max reuse 24.0 hours)
+2014-05-22 12:23:34,825 [INFO] 	contacting remote host hcc-crabserver.unl.edu
+2014-05-22 12:23:35,427 [DEBUG] 	Execute command :
+gsissh  -o ControlMaster=auto -o ControlPath=/tmp/gdimperi/.ssh/ssh-link-197948489-hcc-crabserver.unl.edu -o BatchMode=yes -o StrictHostKeyChecking=no -o ForwardX11=no hcc-crabserver.unl.edu  "sleep 3600"
+2014-05-22 12:23:35,431 [INFO] 	Establishing gsissh ControlPath. Wait 2 sec ...
+2014-05-22 12:23:37,433 [INFO] 	Establishing gsissh ControlPath. Wait 2 sec ...
+2014-05-22 12:23:39,438 [INFO] 	COPY FILES TO REMOTE HOST
+2014-05-22 12:23:39,438 [DEBUG] 	Execute command :
+gsissh -o ControlMaster=auto -o ControlPath=/tmp/gdimperi/.ssh/ssh-link-197948489-hcc-crabserver.unl.edu -o BatchMode=yes -o StrictHostKeyChecking=no -o ForwardX11=no hcc-crabserver.unl.edu  mkdir -p gdimperi_test2_7d6ea1
+2014-05-22 12:23:39,800 [DEBUG] 	Status,output= 0,
+2014-05-22 12:23:39,800 [DEBUG] 	Execute command :
+gsiscp -o ControlMaster=auto -o ControlPath=/tmp/gdimperi/.ssh/ssh-link-197948489-hcc-crabserver.unl.edu -o BatchMode=yes -o StrictHostKeyChecking=no -o ForwardX11=no /cmshome/gdimperi/Dijet/CMSSW_6_2_5/src/analysis/DijetAnalysis/prod/test2/share/default.tgz /cmshome/gdimperi/Dijet/CMSSW_6_2_5/src/analysis/DijetAnalysis/prod/test2/share/arguments.xml /cmshome/gdimperi/Dijet/CMSSW_6_2_5/src/analysis/DijetAnalysis/prod/test2/job/CMSSW.sh /cmshome/gdimperi/Dijet/CMSSW_6_2_5/src/analysis/DijetAnalysis/prod/test2/share//gdimperi_test2_7d6ea1_job11.jdl /tmp/x509up_u10095 hcc-crabserver.unl.edu:gdimperi_test2_7d6ea1
+2014-05-22 12:23:43,427 [DEBUG] 	Status,output= 0,
+2014-05-22 12:23:43,427 [INFO] 	SUBMIT TO REMOTE GLIDEIN FRONTEND
+2014-05-22 12:23:43,427 [DEBUG] 	Execute command :
+gsissh -o ControlMaster=auto -o ControlPath=/tmp/gdimperi/.ssh/ssh-link-197948489-hcc-crabserver.unl.edu -o BatchMode=yes -o StrictHostKeyChecking=no -o ForwardX11=no hcc-crabserver.unl.edu "cd gdimperi_test2_7d6ea1;  condor_submit  gdimperi_test2_7d6ea1_job11.jdl; echo 'CONDOR_SUBMIT-EXIT-STATUS IS' \$?"
+2014-05-22 12:26:23,771 [DEBUG] 	Status,output= 0,Submitting job(s)...........
+11 job(s) submitted to cluster 131220.
+
+WARNING: File /crab/grid_home/uscmsPool2483/gdimperi_test2_7d6ea1/crab_fjr_11.xml is not writable by condor.
+CONDOR_SUBMIT-EXIT-STATUS IS 0
+2014-05-22 12:26:23,773 [DEBUG] 	Returning {u'gdimperi_test2_7d6ea1_job1': 'hcc-crabserver.unl.edu//140522//131220.0', u'gdimperi_test2_7d6ea1_job3': 'hcc-crabserver.unl.edu//140522//131220.2', u'gdimperi_test2_7d6ea1_job2': 'hcc-crabserver.unl.edu//140522//131220.1', u'gdimperi_test2_7d6ea1_job5': 'hcc-crabserver.unl.edu//140522//131220.4', u'gdimperi_test2_7d6ea1_job4': 'hcc-crabserver.unl.edu//140522//131220.3', u'gdimperi_test2_7d6ea1_job7': 'hcc-crabserver.unl.edu//140522//131220.6', u'gdimperi_test2_7d6ea1_job6': 'hcc-crabserver.unl.edu//140522//131220.5', u'gdimperi_test2_7d6ea1_job9': 'hcc-crabserver.unl.edu//140522//131220.8', u'gdimperi_test2_7d6ea1_job8': 'hcc-crabserver.unl.edu//140522//131220.7', u'gdimperi_test2_7d6ea1_job11': 'hcc-crabserver.unl.edu//140522//131220.10', u'gdimperi_test2_7d6ea1_job10': 'hcc-crabserver.unl.edu//140522//131220.9'}
+gdimperi_test2_7d6ea1
+cmsrm-ui03.roma1.infn.it
+2014-05-22 12:26:23,799 [DEBUG] 	WMS : cmsrm-ui03.roma1.infn.it
+Collection ID : gdimperi_test2_7d6ea1
+2014-05-22 12:26:23,805 [DEBUG] 	Submitted job # 1
+2014-05-22 12:26:23,805 [DEBUG] 	Submitted job # 2
+2014-05-22 12:26:23,805 [DEBUG] 	Submitted job # 3
+2014-05-22 12:26:23,805 [DEBUG] 	Submitted job # 4
+2014-05-22 12:26:23,805 [DEBUG] 	Submitted job # 5
+2014-05-22 12:26:23,805 [DEBUG] 	Submitted job # 6
+2014-05-22 12:26:23,805 [DEBUG] 	Submitted job # 7
+2014-05-22 12:26:23,806 [DEBUG] 	Submitted job # 8
+2014-05-22 12:26:23,806 [DEBUG] 	Submitted job # 9
+2014-05-22 12:26:23,806 [DEBUG] 	Submitted job # 10
+2014-05-22 12:26:23,806 [DEBUG] 	Submitted job # 11
+2014-05-22 12:26:23,831 [DEBUG] 	Updating [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]] state SubSuccess
+2014-05-22 12:26:24,239 [DEBUG] 	GRIDNAME: /C=IT/O=INFN/OU=Personal Certificate/L=Roma 1/CN=Giulia Dimperio 
+2014-05-22 12:26:24,605 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'cacheduration': 24, 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0xac7410>, 'conn': <httplib.HTTPSConnection instance at 0x10c7bd8>}, 'logger': <logging.Logger object at 0xac7410>, 'cacheduration': 24, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /cmshome/gdimperi/.cms_sitedbcache (duration 24 hours, max reuse 24.0 hours)
+2014-05-22 12:26:25,003 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'cacheduration': 24, 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0xac7410>, 'conn': <httplib.HTTPSConnection instance at 0x19e2cf8>}, 'logger': <logging.Logger object at 0xac7410>, 'cacheduration': 24, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /cmshome/gdimperi/.cms_sitedbcache (duration 24 hours, max reuse 24.0 hours)
+2014-05-22 12:26:25,037 [DEBUG] 	Submission Time: 172.003633976
+2014-05-22 12:26:25,038 [INFO] 	Total of 11 jobs submitted.
+2014-05-22 12:26:49,894 [DEBUG] 	/cvmfs/cms.cern.ch/crab/CRAB_2_10_5_patch1/python/crab.py -status -c test2
+
+2014-05-22 12:26:49,894 [INFO] 	Version 2.10.5_patch1 running on Thu May 22 12:26:49 2014 CET (10:26:49 UTC)
+
+crab. Working options:
+	scheduler           remoteGlidein
+	job type            CMSSW
+	server              OFF
+	working directory   /cmshome/gdimperi/Dijet/CMSSW_6_2_5/src/analysis/DijetAnalysis/prod/test2/
+
+2014-05-22 12:26:49,894 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/cmshome/gdimperi/.cms_crab/allowed_releases.conf].
+2014-05-22 12:26:49,894 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/cmshome/gdimperi/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/cmshome/gdimperi/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger object at 0xb8b350>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0xaf6a28>}, 'logger': <logging.Logger object at 0xb8b350>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /cmshome/gdimperi/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2014-05-22 12:26:49,974 [INFO] 	error detecting glite version 
+2014-05-22 12:26:49,987 [INFO] 	error detecting glite version 
+2014-05-22 12:26:49,988 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0xb8b350>, 'conn': <httplib.HTTPSConnection instance at 0xa08cb0>}, 'logger': <logging.Logger object at 0xb8b350>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /cmshome/gdimperi/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2014-05-22 12:26:49,988 [DEBUG] 	Service initialised ({'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'content_type': 'application/json', 'maxcachereuse': 24.0, 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'basepath': '/sitedb/data/prod/', 'method': None, 'accept_type': 'application/json', 'timeout': 30, 'requests': {'endpoint': 'https://cmsweb.cern.ch/sitedb/data/prod/', 'cachepath': '/cmshome/gdimperi/.cms_sitedbcache', 'host': 'cmsweb.cern.ch', 'accept_type': 'application/json', 'content_type': 'application/json', 'logger': <logging.Logger object at 0xb8b350>, 'conn': <httplib.HTTPSConnection instance at 0xcadc68>}, 'logger': <logging.Logger object at 0xb8b350>, 'cacheduration': 0.5, 'inputdata': {}}):
+	 host: cmsweb.cern.ch, basepath: /sitedb/data/prod/ (application/json)
+	 cache: /cmshome/gdimperi/.cms_sitedbcache (duration 0.5 hours, max reuse 24.0 hours)
+2014-05-22 12:26:49,988 [DEBUG] 	Input whitelist: 
+2014-05-22 12:26:49,988 [DEBUG] 	Input blacklist: T0, T1, T3
+2014-05-22 12:26:49,998 [DEBUG] 	Converted whitelist: 
+2014-05-22 12:26:49,998 [DEBUG] 	Converted blacklist: glite-se.ceres.auckland.ac.nz, uosaf0007.sscc.uos.ac.kr, grid02.hep.by, srm-cms.cern.ch, sebo-t3-01.cr.cnaf.infn.it, fakese.parrot.as, srm.hep.brown.edu, cms-0.mps.ohio-state.edu, se02.marie.hellasgrid.gr, grid002.fi.infn.it, fakese.parrottest.us, umiss005.hep.olemiss.edu, srm-cms-disk.gridpp.rl.ac.uk, ntugrid6.phys.ntu.edu.tw, cmseos.fnal.gov, ndcms.crc.nd.edu, sigmorgh.hpcc.ttu.edu, uscms1-se.fltech-grid3.fit.edu, srm-cms-mss.jinr-t1.ru, phedex.geol.uniovi.es, cms213.phys.utk.edu, cmssrm-kit.gridka.de, hepcms-0.umd.edu, ccsrm.in2p3.fr, cmssrmdisk.fnal.gov, lorienmaster.irb.hr, srmcms.pic.es, srm.hep.fiu.edu, meson.fis.cinvestav.mx, brazil.accre.vanderbilt.edu, t2se01.physics.ox.ac.uk, grid09.phy.pku.edu.cn, se2.grid.lebedev.ru, gridsrm.ts.infn.it, srm2.grid.sinica.edu.tw, hep.pha.jhu.edu, cms-se.hep.uprm.edu, lyogrid06.in2p3.fr, ntugrid4.phys.ntu.edu.tw, se.tier3.ucdavis.edu, se1.particles.ipm.ac.ir, osg-se.cac.cornell.edu, srm.brazos.tamu.edu, ttgrid04.ci.northwestern.edu, bonner-grid.rice.edu, srm-cms.jinr-t1.ru, storm-fe-cms.cr.cnaf.infn.it, se.hep.fsu.edu, gc1-se.spa.umn.edu, gridse2.pg.infn.it, u2-grid.ccr.buffalo.edu, moboro.uniandes.edu.co, ruhex-osgce.rutgers.edu, srm-eoscms.cern.ch, cmsse02.na.infn.it, se03.esc.qmul.ac.uk, grow-grid.its.uiowa.edu, t3serv006.mit.edu, svr018.gla.scotgrid.ac.uk, srm.glite.ecdf.ed.ac.uk, cmssw.princeton.edu, fakese.parrot.eu, osg-hep.phys.virginia.edu, storm.mib.infn.it, cmssrm.fnal.gov, srm-cms.gridpp.rl.ac.uk, grid71.phy.ncu.edu.tw, fakese.parrot.us, grid07.phy.pku.edu.cn, cms-xen19.fnal.gov, charm.ucr.edu, lcg-dpm01.hep.ucl.ac.uk, se01.marie.hellasgrid.gr, se2.ppgrid1.rhul.ac.uk, kodiak-se.baylor.edu, t3se01.psi.ch, hepse01.colorado.edu
+2014-05-22 12:26:49,998 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/cmshome/gdimperi/.cms_crab/myproxy_server.conf].
+2014-05-22 12:26:49,999 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/cmshome/gdimperi/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/cmshome/gdimperi/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger object at 0xb8b350>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x7f85676f6128>}, 'logger': <logging.Logger object at 0xb8b350>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /cmshome/gdimperi/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2014-05-22 12:26:49,999 [DEBUG] 	Downloading file [http://cmsdoc.cern.ch/cms/LCG/crab/config/] to [/cmshome/gdimperi/.cms_crab/site_black_list.conf].
+2014-05-22 12:26:49,999 [DEBUG] 	Service initialised ({'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'maxcachereuse': 24.0, 'cachepath': '/cmshome/gdimperi/.cms_crab', 'basepath': '/cms/LCG/crab/config/', 'method': None, 'timeout': 20, 'requests': {'endpoint': 'http://cmsdoc.cern.ch/cms/LCG/crab/config/', 'timeout': 20, 'cachepath': '/cmshome/gdimperi/.cms_crab', 'cacheduration': 0.5, 'host': 'cmsdoc.cern.ch', 'accept_type': 'text/html', 'content_type': 'application/x-www-form-urlencoded', 'logger': <logging.Logger object at 0xb8b350>, 'type': 'txt/csv', 'conn': <httplib.HTTPConnection instance at 0x7f85676f6128>}, 'logger': <logging.Logger object at 0xb8b350>, 'cacheduration': 0.5, 'type': 'txt/csv', 'inputdata': {}}):
+	 host: cmsdoc.cern.ch, basepath: /cms/LCG/crab/config/ (text/html)
+	 cache: /cmshome/gdimperi/.cms_crab (duration 0.5 hours, max reuse 24.0 hours)
+2014-05-22 12:26:50,000 [DEBUG] 	Enforced black list: TAPE,srm-cms.cern.ch,cmssrm.fnal.gov,T1_FR,T1_RU,T1_TW,cmseos.fnal.gov,cmsdca2.fnal.gov,T2_PK_NCP,T3_US_Vanderbilt_EC2
+ 
+2014-05-22 12:26:53,260 [DEBUG] 	Status::run() called
+2014-05-22 12:26:53,260 [INFO] 	Checking the status of all jobs: please wait
+2014-05-22 12:26:53,293 [INFO] 	contacting remote host hcc-crabserver.unl.edu
+2014-05-22 12:26:53,812 [DEBUG] 	Execute command :
+gsiscp -o ControlMaster=auto -o ControlPath=/tmp/gdimperi/.ssh/ssh-link-197948489-hcc-crabserver.unl.edu -o BatchMode=yes -o StrictHostKeyChecking=no -o ForwardX11=no /tmp/x509up_u10095 hcc-crabserver.unl.edu:gdimperi_test2_7d6ea1
+2014-05-22 12:29:38,253 [DEBUG] 	Status,output= 0,
+2014-05-22 12:29:38,254 [DEBUG] 	Execute command :
+gsissh -o ControlMaster=auto -o ControlPath=/tmp/gdimperi/.ssh/ssh-link-197948489-hcc-crabserver.unl.edu -o BatchMode=yes -o StrictHostKeyChecking=no -o ForwardX11=no hcc-crabserver.unl.edu  "condor_history -userlog gdimperi_test2_7d6ea1/condor.log -xml"
+2014-05-22 12:29:38,823 [INFO] 	
+ID    END STATUS            ACTION       ExeExitCode JobExitCode E_HOST
+----- --- ----------------- ------------  ---------- ----------- ---------
+1     N   Submitted         SubSuccess                           
+2     N   Submitted         SubSuccess                           
+3     N   Submitted         SubSuccess                           
+4     N   Submitted         SubSuccess                           
+5     N   Submitted         SubSuccess                           
+6     N   Submitted         SubSuccess                           
+7     N   Submitted         SubSuccess                           
+8     N   Submitted         SubSuccess                           
+9     N   Submitted         SubSuccess                           
+10    N   Submitted         SubSuccess                           
+--------------------------------------------------------------------------------
+11    N   Submitted         SubSuccess                           
+
+2014-05-22 12:29:38,859 [INFO] 	 11 Total Jobs 
+ >>>>>>>>> 11 Jobs Submitted 
+	List of jobs Submitted: 1-11 
+
+2014-05-22 12:29:38,863 [INFO] 	You can also follow the status of this task on :
+	CMS Dashboard: http://dashb-cms-job-task.cern.ch/taskmon.html#task=gdimperi_test2_7d6ea1
+	Your task name is: gdimperi_test2_7d6ea1 
+
+2014-05-22 12:29:38,863 [DEBUG] 	Status Time: 165.60314703

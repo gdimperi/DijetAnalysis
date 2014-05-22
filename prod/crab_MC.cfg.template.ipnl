@@ -1,0 +1,47 @@
+[CRAB]
+jobtype = cmssw
+
+scheduler = remoteGlidein
+use_server = 0
+
+[CMSSW]
+
+datasetpath = @datasetname@
+pset = produce_PAT_MC.py
+
+total_number_of_events = -1
+
+### Number of events to be processed per job
+events_per_job = 28000
+
+### The output files produced by your application (comma separated list)
+output_file = patTuple_PF2PAT_MC.root
+
+[USER]
+
+#eMail = @email@
+eMail = giulia.dimperio@cern.ch
+
+ui_working_dir = @uiworkingdir@
+
+return_data = 0
+copy_data = 1
+
+#storage_element = cmsrm-se01.roma1.infn.it
+storage_element = T2_IT_Rome
+#storage_path=/srm/managerv2?SFN=/pnfs/roma1.infn.it/data/cms/
+check_user_remote_dir = 1
+user_remote_dir = @remote_dir@
+
+publish_data = 1
+dbs_url_for_publication = https://cmsdbsprod.cern.ch:8443/cms_dbs_ph_analysis_02_writer/servlet/DBSServlet
+publish_data_name = @publish_data_name@
+
+
+
+[GRID]
+rb = CERN
+virtual_organization = cms
+se_black_list=T0,T1,T3
+#se_black_list=T2_KR_KNU,T2_BE_IIHE,T2_RU_ITEP
+#se_white_list=T3_FR_IPNL
