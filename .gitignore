@@ -7,6 +7,9 @@
 *.o
 *.so
 *_C.d
+*.pyc
+*__init__.py
+
 
 # Packages #
 ############
