@@ -1,4 +1,4 @@
-<library   file="*.cc" name="cmsdas2014ExoDijetsExercisePlugins">
+<library   file="*.cc" name="CMSROMADijetAnalysisPlugins">
 <use   name="root"/> 
 <use   name="rootrflx"/>
 <use   name="rootcore"/>

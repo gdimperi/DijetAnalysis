@@ -13,7 +13,7 @@
 #include "TMath.h"
 #include "TLorentzVector.h"
 
-#include "analysis/DijetAnalysis/plugins/DijetTreeProducer.h"
+#include "CMSROMA/DijetAnalysis/plugins/DijetTreeProducer.h"
 #include "FWCore/Framework/interface/EventSetup.h"
 #include "FWCore/Framework/interface/Frameworkfwd.h"
 #include "FWCore/Framework/interface/MakerMacros.h"

@@ -1,5 +1,5 @@
-#include "analysis/DijetAnalysis/plugins/NjettinessAdder.h"
-#include "analysis/DijetAnalysis/interface/Njettiness.hh"
+#include "CMSROMA/DijetAnalysis/plugins/NjettinessAdder.h"
+#include "CMSROMA/DijetAnalysis/interface/Njettiness.hh"
 
 #include "FWCore/Framework/interface/MakerMacros.h"
 

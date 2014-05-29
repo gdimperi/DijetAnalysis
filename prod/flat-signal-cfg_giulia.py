@@ -16,7 +16,7 @@ process.source = cms.Source("PoolSource",
 #############   Format MessageLogger #################
 process.MessageLogger.cerr.FwkReport.reportEvery = 100
 
-process.load('analysis.DijetAnalysis.PAT_ca8jets_simple_cff_giulia')
+process.load('CMSROMA.DijetAnalysis.PAT_ca8jets_simple_cff_giulia')
 
 ##-------------------- User analyzer  --------------------------------
 process.dijets     = cms.EDAnalyzer('DijetTreeProducer',
