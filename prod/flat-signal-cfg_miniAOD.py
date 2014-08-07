@@ -27,9 +27,9 @@ process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(100))
 process.source = cms.Source("PoolSource",
     #fileNames = cms.untracked.vstring('file:RSGravToJJ_kMpl01_M-1000_test.root')
     fileNames = cms.untracked.vstring('file:/cmshome/santanas/CMS/data/Spring14miniaod__RSGravToJJ_kMpl01_M-1000_Tune4C_13TeV-pythia8__MINIAODSIM__PU20bx25_POSTLS170_V5-v1__00000__6AACD832-3707-E411-A167-001E672489D5.root')
+    #fileNames = cms.untracked.vstring('file:/cmshome/santanas/CMS/data/Spring14drAODSIM__RSGravToJJ_kMpl01_M-1000_Tune4C_13TeV-pythia8__AODSIM__PU20bx25_POSTLS170_V5-v1__00000__0622C950-58E4-E311-A595-0025904B130A.root')
     
 )
-
 
 ##-------------------- Output  --------------------------------
 
@@ -38,7 +38,6 @@ process.source = cms.Source("PoolSource",
 #     outputCommands = cms.untracked.vstring(['drop *','keep patJets_patJetsAK4PFCHS_*_*']) 
 # )
 # process.endpath= cms.EndPath(process.OUT)
-
 
 ##-------------------- Create collections  --------------------------------
 
@@ -58,7 +57,7 @@ process.ak4PFJetsCHS = ak4PFJets.clone(
     jetAlgorithm = cms.string("AntiKt"),
     )
 #process.ak4PFJets = ak4PFJets.clone(src = 'packedPFCandidates') 
-process.ak4GenJets = ak4GenJets.clone(src = 'packedGenParticles')
+process.ak4GenJetsMy = ak4GenJets.clone(src = 'packedGenParticles')
 
 from PhysicsTools.PatAlgos.tools.jetTools import addJetCollection
 addJetCollection(
@@ -74,7 +73,7 @@ addJetCollection(
    )
 
 #adjust MC matching
-process.patJetGenJetMatchAK4PFCHS.matched = "ak4GenJets"
+process.patJetGenJetMatchAK4PFCHS.matched = "ak4GenJetsMy"
 process.patJetPartonMatchAK4PFCHS.matched = "prunedGenParticles"
 process.patJetPartons.particles = "prunedGenParticles"
 
@@ -90,8 +89,7 @@ process.ak8PFJetsCHS = ak4PFJets.clone(
     rParam = cms.double(0.8),
     jetAlgorithm = cms.string("AntiKt"),
     )
-#process.ak8GenJets = ak8GenJets.clone(src = 'packedGenParticles')
-process.ak8GenJets = ak4GenJets.clone(
+process.ak8GenJetsMy = ak4GenJets.clone(
     src = 'packedGenParticles',
     rParam = cms.double(0.8),
     )
@@ -110,7 +108,7 @@ addJetCollection(
    )
 
 #adjust MC matching
-process.patJetGenJetMatchAK8PFCHS.matched = "ak8GenJets"
+process.patJetGenJetMatchAK8PFCHS.matched = "ak8GenJetsMy"
 process.patJetPartonMatchAK8PFCHS.matched = "prunedGenParticles"
 process.patJetPartons.particles = "prunedGenParticles"
 
@@ -127,7 +125,8 @@ process.load('PhysicsTools.PatAlgos.slimming.unpackedTracksAndVertices_cfi')
 process.combinedSecondaryVertex.trackMultiplicityMin = 1  #needed for CMSSW < 71X
 #new PAT default running is "unscheduled" so we just need to say in the outputCommands what we want to store
 process.options = cms.untracked.PSet(
-        allowUnscheduled = cms.untracked.bool(True)
+        allowUnscheduled = cms.untracked.bool(True),
+        wantSummary = cms.untracked.bool(True),
 )
 
 
@@ -165,13 +164,12 @@ process.dijets     = cms.EDAnalyzer('DijetTreeProducer',
     throw                 = cms.bool(False)
   )
 )
-#process.p = cms.Path(process.ca8Jets * process.dijets)
-#process.p = cms.Path(process.ca8Jets)
 
 process.p = cms.Path(process.chs + 
                      process.ak4PFJetsCHS +
-                     process.ak4GenJets + 
+                     process.ak4GenJetsMy + 
                      process.ak8PFJetsCHS +
-                     process.ak8GenJets + 
+                     process.ak8GenJetsMy + 
                      process.dijets )
+
 
