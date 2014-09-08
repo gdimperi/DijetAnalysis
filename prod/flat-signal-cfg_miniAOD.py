@@ -1,136 +1,214 @@
 import FWCore.ParameterSet.Config as cms 
 
-process = cms.Process('myprocess')
+process = cms.Process('jetToolbox')
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(10) )
 
-process.load("PhysicsTools.PatAlgos.producersLayer1.patCandidates_cff")
-process.load("Configuration.EventContent.EventContent_cff")
+process.load('PhysicsTools.PatAlgos.producersLayer1.patCandidates_cff')
+process.load('Configuration.EventContent.EventContent_cff')
 process.load('Configuration.StandardSequences.Geometry_cff')
 process.load('Configuration.StandardSequences.MagneticField_38T_cff')
 
+## ----------------- Global Tag ------------------
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
+
 #process.GlobalTag.globaltag = 'START53_V27::All'
 #process.GlobalTag.globaltag = 'START70_V6::All'
 #process.GlobalTag.globaltag = 'POSTLS170_V5::All'
 #process.GlobalTag.globaltag = 'POSTLS170_V7::All'
 process.GlobalTag.globaltag = 'PLS170_V7AN1::All'
 
+#--------------------- Report and output ---------------------------
 
 process.load('FWCore.MessageService.MessageLogger_cfi')
 process.MessageLogger.cerr.FwkReport.reportEvery = 1
 
-process.TFileService=cms.Service("TFileService",fileName=cms.string('dijetTree_signal.root'))
+process.TFileService=cms.Service("TFileService",
+                                 fileName=cms.string('dijetTree_signal.root'),
+                                 closeFileFast = cms.untracked.bool(True)
+                                 )
+
+## --- suppress long output ---> wantSummary = cms.untracked.bool(False) 
+
+process.options = cms.untracked.PSet(
+        allowUnscheduled = cms.untracked.bool(True),
+        wantSummary = cms.untracked.bool(False),
+)
+
+
+# ----------------------- Jet Tool Box  -----------------
+
+##Load the toolBoxMiniHelper
+#from RecoJets.JetProducers.jettoolboxMiniHelper_cff import * 
+##for some reason doesn't work  ?__?
+## just copy&paste the cff here
+
+process.chs = cms.EDFilter('CandPtrSelector', src = cms.InputTag('packedPFCandidates'), cut = cms.string('fromPV'))
+
+process.load('RecoJets.Configuration.RecoPFJets_cff')
+process.load('RecoJets.Configuration.RecoGenJets_cff')
+
+process.ak4PFJets.src = 'packedPFCandidates'
+process.ak4PFJets.doAreaFastjet = True
+
+process.ak4PFJetsCHS = process.ak4PFJetsCHS.clone(src = 'chs', doAreaFastjet = True) #boh ?
+process.ak8PFJetsCHS = process.ak4PFJetsCHS.clone(src = 'chs', doAreaFastjet = True, rParam = 0.8)
+process.ca8PFJetsCHS = process.ca4PFJets.clone(src = 'chs', doAreaFastjet = True, rParam = 0.8)
+
+process.ak4GenJets.src = 'packedGenParticles'
+process.ak8GenJets = process.ak4GenJets.clone(src = 'packedGenParticles', rParam = 0.8)
+process.ca8GenJets = process.ca4GenJets.clone(src = 'packedGenParticles', rParam = 0.8)
+
+process.fixedGridRhoFastjetAll.pfCandidatesTag = 'packedPFCandidates'
+
+process.ak8PFJetsCHSPruned.src = 'chs'
+process.ak8PFJetsCHSTrimmed.src = 'chs'
+process.ak8PFJetsCHSFiltered.src = 'chs'
+
+process.ca8PFJetsCHSPruned.src = 'chs'
+process.ca8PFJetsCHSTrimmed.src = 'chs'
+process.ca8PFJetsCHSFiltered.src = 'chs'
+
+process.cmsTopTagPFJetsCHS.src = 'chs'
+
+from PhysicsTools.PatAlgos.tools.jetTools import addJetCollection
+from PhysicsTools.PatAlgos.tools.jetTools import switchJetCollection
+
+addJetCollection(
+    process,
+    labelName = 'AK4PFCHS',
+    jetSource = cms.InputTag('ak4PFJetsCHS'),
+    algo = 'ak4',
+    rParam = 0.4,
+    jetCorrections = ('AK5PFchs', cms.vstring(['L1FastJet', 'L2Relative', 'L3Absolute']), 'None'),
+    trackSource = cms.InputTag('unpackedTracksAndVertices'),
+    pvSource = cms.InputTag('unpackedTracksAndVertices'),
+    btagDiscriminators = ['combinedSecondaryVertexBJetTags'],
+    ) 
+
+addJetCollection(
+    process,
+    labelName = 'CA8PFCHS',
+    jetSource = cms.InputTag('ca8PFJetsCHS'),
+    algo = 'ca8',
+    rParam = 0.8,
+    jetCorrections = ('AK7PFchs', cms.vstring(['L1FastJet', 'L2Relative', 'L3Absolute']), 'None'),
+    trackSource = cms.InputTag('unpackedTracksAndVertices'),
+    pvSource = cms.InputTag('unpackedTracksAndVertices'),
+    )                                                                                                                                                                                  
+addJetCollection(
+    process,
+    labelName = 'AK8PFCHS',
+    jetSource = cms.InputTag('ak8PFJetsCHS'),
+    algo = 'ak8',
+    rParam = 0.8,
+    jetCorrections = ('AK7PFchs', cms.vstring(['L1FastJet', 'L2Relative', 'L3Absolute']), 'None'),
+    trackSource = cms.InputTag('unpackedTracksAndVertices'),
+    pvSource = cms.InputTag('unpackedTracksAndVertices'),
+    ) 
+"""
+switchJetCollection(
+    process,
+    jetSource = cms.InputTag('ak4PFJets'),
+    algo = 'ak4',
+    rParam = 0.4,
+    jetCorrections = ('AK5PF', cms.vstring(['L1FastJet', 'L2Relative', 'L3Absolute']), 'Type-1'),
+    # btagDiscriminators = ['jetBProbabilityBJetTags',
+    #                       'jetProbabilityBJetTags',
+    #                       'trackCountingHighPurBJetTags',
+    #                       'trackCountingHighEffBJetTags',
+    #                       'simpleSecondaryVertexHighEffBJetTags',
+    #                       'simpleSecondaryVertexHighPurBJetTags',
+    #                       'combinedSecondaryVertexBJetTags'
+    #                       ],
+    trackSource = cms.InputTag('unpackedTracksAndVertices'),
+    pvSource = cms.InputTag('unpackedTracksAndVertices'),
+    )
+"""
+
+process.patJetsAK4PFCHS.addJetCharge   = False
+process.patJetsAK4PFCHS.addBTagInfo    = True
+process.patJetsAK4PFCHS.getJetMCFlavour = False
+process.patJetsAK4PFCHS.addAssociatedTracks = False
+process.patJetPartonMatchAK4PFCHS.matched='prunedGenParticles'
+process.patJetCorrFactorsAK4PFCHS.primaryVertices = 'offlineSlimmedPrimaryVertices'
+
+process.patJetsCA8PFCHS.addJetCharge   = False
+process.patJetsCA8PFCHS.addBTagInfo    = False   #For some reason this has to be False
+process.patJetsCA8PFCHS.getJetMCFlavour = False
+process.patJetsCA8PFCHS.addAssociatedTracks = False
+process.patJetPartonMatchCA8PFCHS.matched='prunedGenParticles'
+process.patJetCorrFactorsCA8PFCHS.primaryVertices = 'offlineSlimmedPrimaryVertices'
+
+process.patJetsAK8PFCHS.addJetCharge   = False
+process.patJetsAK8PFCHS.addBTagInfo    = False    #For some reason this has to be False
+process.patJetsAK8PFCHS.getJetMCFlavour = False
+process.patJetsAK8PFCHS.addAssociatedTracks = False
+process.patJetPartonMatchAK8PFCHS.matched='prunedGenParticles'
+process.patJetCorrFactorsAK8PFCHS.primaryVertices = 'offlineSlimmedPrimaryVertices'
+
+process.patJets.addJetCharge   = False
+process.patJets.addBTagInfo    = True
+process.patJets.getJetMCFlavour = False
+process.patJets.addAssociatedTracks = False
+process.patJetPartonMatch.matched = 'prunedGenParticles'
+process.patJetCorrFactors.primaryVertices = 'offlineSlimmedPrimaryVertices'
+
+
+process.load('RecoBTag.Configuration.RecoBTag_cff')
+process.load('RecoJets.Configuration.RecoJetAssociations_cff')
+process.load('PhysicsTools.PatAlgos.slimming.unpackedTracksAndVertices_cfi')
+
+process.ak4JetTracksAssociatorAtVertexPF.jets = cms.InputTag('ak4PFJetsCHS')
+process.ak4JetTracksAssociatorAtVertexPF.tracks = cms.InputTag('unpackedTracksAndVertices')
+process.ak8JetTracksAssociatorAtVertexPF=process.ak4JetTracksAssociatorAtVertexPF.clone(jets = cms.InputTag('ak8PFJetsCHS'),
+                                                                                        coneSize = 0.8)
+process.ca8JetTracksAssociatorAtVertexPF=process.ak4JetTracksAssociatorAtVertexPF.clone(jets = cms.InputTag('ca8PFJetsCHS'),
+                                                                                        coneSize = 0.8)
+
+process.impactParameterTagInfos.primaryVertex = cms.InputTag('unpackedTracksAndVertices')
+process.inclusiveSecondaryVertexFinderTagInfos.extSVCollection = cms.InputTag('unpackedTracksAndVertices','secondary','')
+process.combinedSecondaryVertex.trackMultiplicityMin = 1 #silly sv, uses un filtered tracks.. i.e. any pt
+
+process.load('FWCore.MessageLogger.MessageLogger_cfi')
+process.MessageLogger.cerr.FwkReport.reportEvery = 10
+process.MessageLogger.suppressWarning = cms.untracked.vstring('ecalLaserCorrFilter','manystripclus53X','toomanystripclus53X')
+process.options = cms.untracked.PSet( wantSummary = cms.untracked.bool(True) )
+process.options.allowUnscheduled = cms.untracked.bool(True)
+
+
+#Load the toolbox
+process.load('RecoJets.JetProducers.jettoolbox_cff')
+
+
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+#Test with Edmund Code... not working
+#Load the GenEvent and GenPraticles cff files
+#process.load('CMSROMA.DijetAnalysis.RootTupleMakerV2_GenEventInfo_cfi')
+#process.load('CMSROMA.DijetAnalysis.RootTupleMakerV2_GenParticles_cfi')
+
+#------------- Recluster Gen Jets to access the constituents -------
+#already in toolbox, just add keep statements
+
+# process.out.outputCommands.append("keep *_ak4GenJets_*_*")
+# process.out.outputCommands.append("keep *_ak8GenJets_*_*")
+# process.out.outputCommands.append("keep *_ca8GenJets_*_*")
 
 ##-------------------- Define the source  ----------------------------
 
-process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(100))
+process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(10))
 
 process.source = cms.Source("PoolSource",
     #fileNames = cms.untracked.vstring('file:RSGravToJJ_kMpl01_M-1000_test.root')
-    fileNames = cms.untracked.vstring('file:/cmshome/santanas/CMS/data/Spring14miniaod__RSGravToJJ_kMpl01_M-1000_Tune4C_13TeV-pythia8__MINIAODSIM__PU20bx25_POSTLS170_V5-v1__00000__6AACD832-3707-E411-A167-001E672489D5.root')
+    #fileNames = cms.untracked.vstring('file:/cmshome/santanas/CMS/data/Spring14miniaod__RSGravToJJ_kMpl01_M-1000_Tune4C_13TeV-pythia8__MINIAODSIM__PU20bx25_POSTLS170_V5-v1__00000__6AACD832-3707-E411-A167-001E672489D5.root')
     #fileNames = cms.untracked.vstring('file:/cmshome/santanas/CMS/data/Spring14drAODSIM__RSGravToJJ_kMpl01_M-1000_Tune4C_13TeV-pythia8__AODSIM__PU20bx25_POSTLS170_V5-v1__00000__0622C950-58E4-E311-A595-0025904B130A.root')
-    
-)
+    fileNames = cms.untracked.vstring('file:/cmshome/gdimperi/data_test/6AACD832-3707-E411-A167-001E672489D5.root')    
 
-##-------------------- Output  --------------------------------
-
-# process.OUT = cms.OutputModule("PoolOutputModule",
-#     fileName = cms.untracked.string('test.root'),
-#     outputCommands = cms.untracked.vstring(['drop *','keep patJets_patJetsAK4PFCHS_*_*']) 
-# )
-# process.endpath= cms.EndPath(process.OUT)
-
-##-------------------- Create collections  --------------------------------
-
-# Select candidates that would pass CHS requirements
-process.chs = cms.EDFilter("CandPtrSelector", src = cms.InputTag("packedPFCandidates"), cut = cms.string("fromPV"))
-
-##---- AK4 ----
-from RecoJets.JetProducers.ak4PFJets_cfi import ak4PFJets
-from RecoJets.JetProducers.ak4GenJets_cfi import ak4GenJets
-
-process.ak4PFJetsCHS = ak4PFJets.clone(
-    src = 'chs',
-    #jetPtMin = cms.double(10.0),   
-    doAreaFastjet = cms.bool(True), 
-    #doRhoFastjet = cms.bool(True), 
-    rParam = cms.double(0.4),
-    jetAlgorithm = cms.string("AntiKt"),
-    )
-#process.ak4PFJets = ak4PFJets.clone(src = 'packedPFCandidates') 
-process.ak4GenJetsMy = ak4GenJets.clone(src = 'packedGenParticles')
-
-from PhysicsTools.PatAlgos.tools.jetTools import addJetCollection
-addJetCollection(
-   process,
-   postfix   = "",
-   labelName = 'AK4PFCHS',
-   jetSource = cms.InputTag('ak4PFJetsCHS'),
-   trackSource = cms.InputTag('unpackedTracksAndVertices'), 
-   pvSource = cms.InputTag('unpackedTracksAndVertices'), 
-   jetCorrections = ('AK4PFchs', cms.vstring(['L1FastJet', 'L2Relative', 'L3Absolute']), 'Type-2'),
-   btagDiscriminators = [      'combinedSecondaryVertexBJetTags'     ]
-   ,algo= 'AK', rParam = 0.4
-   )
-
-#adjust MC matching
-process.patJetGenJetMatchAK4PFCHS.matched = "ak4GenJetsMy"
-process.patJetPartonMatchAK4PFCHS.matched = "prunedGenParticles"
-process.patJetPartons.particles = "prunedGenParticles"
-
-#adjust PV used for Jet Corrections
-process.patJetCorrFactorsAK4PFCHS.primaryVertices = "offlineSlimmedPrimaryVertices"
-
-##---- AK8 ----
-process.ak8PFJetsCHS = ak4PFJets.clone(
-    src = 'chs',
-    #jetPtMin = cms.double(10.0),   
-    doAreaFastjet = cms.bool(True),
-    #doRhoFastjet = cms.bool(True),  
-    rParam = cms.double(0.8),
-    jetAlgorithm = cms.string("AntiKt"),
-    )
-process.ak8GenJetsMy = ak4GenJets.clone(
-    src = 'packedGenParticles',
-    rParam = cms.double(0.8),
-    )
-
-from PhysicsTools.PatAlgos.tools.jetTools import addJetCollection
-addJetCollection(
-   process,
-   postfix   = "",
-   labelName = 'AK8PFCHS',
-   jetSource = cms.InputTag('ak8PFJetsCHS'),
-   trackSource = cms.InputTag('unpackedTracksAndVertices'), 
-   pvSource = cms.InputTag('unpackedTracksAndVertices'), 
-   jetCorrections = ('AK8PFchs', cms.vstring(['L1FastJet', 'L2Relative', 'L3Absolute']), 'Type-2'),
-   btagDiscriminators = [      'combinedSecondaryVertexBJetTags'     ]
-   ,algo= 'AK', rParam = 0.8
-   )
-
-#adjust MC matching
-process.patJetGenJetMatchAK8PFCHS.matched = "ak8GenJetsMy"
-process.patJetPartonMatchAK8PFCHS.matched = "prunedGenParticles"
-process.patJetPartons.particles = "prunedGenParticles"
-
-#adjust PV used for Jet Corrections
-process.patJetCorrFactorsAK8PFCHS.primaryVertices = "offlineSlimmedPrimaryVertices"
-
-##-- B-tagging for all jets
-
-# the following part is needed if you want to run b-tagging on the freshly made jets
-# CAVEAT: it is not 100% the same b-tagging as in RECO, but performance plots are almost identical
-# As tracks are not stored in miniAOD, and b-tag fwk for CMSSW < 72X does not accept candidates
-# we need to recreate tracks and pv for btagging in standard reco format:
-process.load('PhysicsTools.PatAlgos.slimming.unpackedTracksAndVertices_cfi')
-process.combinedSecondaryVertex.trackMultiplicityMin = 1  #needed for CMSSW < 71X
-#new PAT default running is "unscheduled" so we just need to say in the outputCommands what we want to store
-process.options = cms.untracked.PSet(
-        allowUnscheduled = cms.untracked.bool(True),
-        wantSummary = cms.untracked.bool(True),
 )
 
 
 ##-------------------- User analyzer  --------------------------------
+
+
 process.dijets     = cms.EDAnalyzer('DijetTreeProducer',
   ## JETS/MET ########################################
   jetsAK4             = cms.InputTag('patJetsAK4PFCHS'),
@@ -141,8 +219,15 @@ process.dijets     = cms.EDAnalyzer('DijetTreeProducer',
   ptMinAK8         = cms.double(10),
   #mjjMin           = cms.double(700),
   #dEtaMax          = cms.double(1.3),
+
+  #forse non serve perche' gia' aggiunti al pat::jet -giulia-
+  #Cutbasedid        = cms.InputTag("pileupJetIdEvaluator:cutbasedId"),
+  #fullDiscriminant  = cms.InputTag("pileupJetIdEvaluator:fullDiscriminant")
+  #fullId            = cms.InputTag("pileupJetIdEvaluator:fullId"),
   ## MC ########################################
   pu               = cms.untracked.InputTag('addPileupInfo'),
+  ptHat            = cms.untracked.InputTag('generator'),
+
   ## trigger ###################################
   triggerAlias     = cms.vstring('Fat','PFHT650','PFNoPUHT650','HT750','HT550'),
   triggerSelection = cms.vstring(
@@ -165,11 +250,89 @@ process.dijets     = cms.EDAnalyzer('DijetTreeProducer',
   )
 )
 
-process.p = cms.Path(process.chs + 
-                     process.ak4PFJetsCHS +
-                     process.ak4GenJetsMy + 
-                     process.ak8PFJetsCHS +
-                     process.ak8GenJetsMy + 
-                     process.dijets )
+
+# #Keep statements for valueMaps (link Reco::Jets to associated quantities)
+# #You don't have to keep them to deswizzle below
+
+#process.out.outputCommands += ['keep *_pileupJetIdEvaluator_*_*',
+#                       'keep *_QGTagger_*_*']
+
+# process.out.outputCommands += ['keep *_NjettinessCA8_*_*',
+#                                'keep *_QJetsAdderCA8_*_*',
+#                                'keep *_ca8PFJetsCHSPrunedLinks_*_*',
+#                                'keep *_ca8PFJetsCHSTrimmedLinks_*_*',
+#                                'keep *_ca8PFJetsCHSFilteredLinks_*_*',
+#                                'keep *_cmsTopTagPFJetsCHSLinksCA8_*_*',
+#                                ]
 
 
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#Deswizzle valueMaps and attach to PAT::Jets as userFloats
+
+#process.patJetsAK4PFCHS.userData.userFloats.src += ['pileupJetIdEvaluator:fullDiscriminant','QGTagger:qgLikelihood']
+#process.patJetsAK4PFCHS.userData.userInts.src   += ['pileupJetIdEvaluator:cutbasedId','pileupJetIdEvaluator:fullId']
+
+process.patJetsCA8PFCHS.userData.userFloats.src += ['NjettinessCA8:tau1','NjettinessCA8:tau2','NjettinessCA8:tau3',
+                                                    'QJetsAdderCA8:QjetsVolatility',
+                                                    'ca8PFJetsCHSPrunedLinks','ca8PFJetsCHSTrimmedLinks','ca8PFJetsCHSFilteredLinks',
+                                                    'cmsTopTagPFJetsCHSLinksCA8']
+
+process.patJetsAK8PFCHS.userData.userFloats.src += ['NjettinessAK8:tau1','NjettinessAK8:tau2','NjettinessAK8:tau3',
+                                                    'QJetsAdderAK8:QjetsVolatility',
+                                                    'ak8PFJetsCHSPrunedLinks','ak8PFJetsCHSTrimmedLinks','ak8PFJetsCHSFilteredLinks',
+                                                    'cmsTopTagPFJetsCHSLinksAK8']
+
+
+
+
+process.p = cms.Path(process.chs * 
+                     process.ak4PFJetsCHS *
+                     process.ak4GenJets *
+                     process.patJetsAK4PFCHS *
+                     #process.patJetPartonMatchAK4PFCHS *
+                     #process.patJetCorrFactorsAK4PFCHS* 
+                     process.ak8PFJetsCHS *
+                     process.ak8GenJets *
+                     process.patJetsAK8PFCHS *
+                     #process.patJetPartonMatchAK8PFCHS *
+                     #process.patJetCorrFactorsAK8PFCHS *
+                     process.ca8PFJetsCHS *
+                     process.ca8GenJets * 
+                     process.patJetsCA8PFCHS *    
+                     #process.patJetPartonMatchCA8PFCHS *
+                     #process.patJetCorrFactorsCA8PFCHS 
+
+                     #process.ak4JetTracksAssociatorAtVertexPF *
+                     #process.ak8JetTracksAssociatorAtVertexPF *
+                     #process.ca8JetTracksAssociatorAtVertexPF *
+                     #process.impactParameterTagInfos *
+                     #process.inclusiveSecondaryVertexFinderTagInfos *
+                     #process.combinedSecondaryVertex *
+
+                     #process.pileupJetId        ##recipe not working for now
+                     #process.puJetIdSequence    ##recipe not working for now
+                     #process.pileupJetIdCalculator *  ##recipe not working for now
+                     #process.pileupJetIdEvaluator     ##recipe not working for now
+                     #process.QGTagger *
+                     #process.NjettinessCA8 *
+                     #process.NjettinessAK8 
+                     #process.QJetsAdderCA8 *
+                     #process.QJetsAdderAK8
+                     process.dijets 
+                     ) 
+
+
+
+
+# ############## output pat test giulia ###############
+# process.out = cms.OutputModule('PoolOutputModule',                                                                                                                  
+#                                fileName = cms.untracked.string('jettoolbox.root'),                                                                              
+#                                outputCommands = cms.untracked.vstring(['keep *_ak4PFJetsCHS_*_*',                                                                    
+#                                                                        'keep *_patJetsAK4PFCHS_*_*',                                                                  
+#                                                                        'keep *_ca8PFJetsCHS_*_*',                                                                     
+#                                                                        'keep *_patJetsCA8PFCHS_*_*',                                                                  
+#                                                                        'keep *_ak8PFJetsCHS_*_*',                                                                     
+#                                                                        'keep *_patJetsAK8PFCHS_*_*',                                                                  
+#                                                                        ])                                                                                           
+#                                )                                                                                                                                     
+# process.endpath = cms.EndPath(process.out)    
