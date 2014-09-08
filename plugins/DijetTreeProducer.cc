@@ -25,6 +25,7 @@
 #include "DataFormats/VertexReco/interface/Vertex.h"
 #include "DataFormats/VertexReco/interface/VertexFwd.h"
 #include "SimDataFormats/PileupSummaryInfo/interface/PileupSummaryInfo.h"
+#include "SimDataFormats/GeneratorProducts/interface/GenEventInfoProduct.h"
 
 using namespace std;
 using namespace reco;
@@ -36,6 +37,8 @@ DijetTreeProducer::DijetTreeProducer(edm::ParameterSet const& cfg)
   srcMET_             = cfg.getParameter<edm::InputTag>             ("met");
   srcVrtx_            = cfg.getParameter<edm::InputTag>             ("vtx");
   srcPU_              = cfg.getUntrackedParameter<edm::InputTag>    ("pu",edm::InputTag(""));
+  srcGenInfo_           = cfg.getUntrackedParameter<edm::InputTag>  ("ptHat",edm::InputTag());
+
   ptMinAK4_           = cfg.getParameter<double>                    ("ptMinAK4");
   ptMinAK8_           = cfg.getParameter<double>                    ("ptMinAK8");
   //mjjMin_             = cfg.getParameter<double>                    ("mjjMin");
@@ -101,6 +104,11 @@ void DijetTreeProducer::beginJob()
   //tau1AK4_           = new std::vector<float>;
   //tau2AK4_           = new std::vector<float>;
   //dRAK4_             = new std::vector<float>;
+
+  //cutbasedJetId_       = new std::vector<float>;
+  //fullJetId_           = new std::vector<float>;
+  //fullJetDiscriminant_ = new std::vector<float>;
+
   outTree_->Branch("jetPtAK4"                ,"vector<float>"     ,&ptAK4_);
   outTree_->Branch("jetJecAK4"               ,"vector<float>"     ,&jecAK4_);
   outTree_->Branch("jetEtaAK4"               ,"vector<float>"     ,&etaAK4_);
@@ -118,6 +126,9 @@ void DijetTreeProducer::beginJob()
   //outTree_->Branch("jetTau1AK4"              ,"vector<float>"     ,&tau1AK4_);
   //outTree_->Branch("jetTau2AK4"              ,"vector<float>"     ,&tau2AK4_);
   //outTree_->Branch("jetDRAK4"                ,"vector<float>"     ,&dRAK4_); 
+  //outTree_->Branch("cutbasedJetId"             ,"vector<float>"     ,&cutbasedJetId_);
+  //outTree_->Branch("fullJetId"                 ,"vector<float>"     ,&fullJetId_);
+  //outTree_->Branch("fullJetDiscriminant"       ,"vector<float>"     ,&fullJetDiscriminant_);
 
   ptAK8_             = new std::vector<float>;
   jecAK8_            = new std::vector<float>;
@@ -158,6 +169,10 @@ void DijetTreeProducer::beginJob()
   outTree_->Branch("triggerResult","vector<bool>",&triggerResult_);
   //------------------- MC ---------------------------------
   outTree_->Branch("npu"                  ,&npu_               ,"npu_/I");
+  outTree_->Branch("ptHat"                ,&ptHat_             ,"ptHat_/F");
+  outTree_->Branch("processID"            ,&processID_         ,"processID_/I");
+  outTree_->Branch("weight"               ,&weight_            ,"weight_/F");
+
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 void DijetTreeProducer::endJob() 
@@ -181,7 +196,9 @@ void DijetTreeProducer::endJob()
   //delete tau1AK4_;
   //delete tau2AK4_;
   //delete dRAK4_;
-
+  //delete cutbasedJetId_      ;
+  //delete fullJetId_          ;
+  //delete fullJetDiscriminant_;
   delete ptAK8_;
   delete jecAK8_;
   delete etaAK8_;
@@ -234,6 +251,66 @@ void DijetTreeProducer::analyze(edm::Event const& iEvent, edm::EventSetup const&
       }
     }
   }// if MC
+
+  //-------------- Gen Event Info -----------------------------------
+  if (!iEvent.isRealData()) {
+    edm::Handle<GenEventInfoProduct> genEvtInfo;
+    iEvent.getByLabel(srcGenInfo_,genEvtInfo);
+    
+    if( !genEvtInfo.isValid() ) {
+      edm::LogInfo("GenEvtInfo") << "ERROR: genEvtInfo not valid! " << genEvtInfo;
+    }
+    if( genEvtInfo.isValid() ) {
+      edm::LogInfo("GenEvtInfo") << "Successfully obtained " << genEvtInfo;
+      ptHat_ = (genEvtInfo->hasBinningValues() ? genEvtInfo->binningValues()[0] : -999.);
+      processID_ = genEvtInfo->signalProcessID();
+      weight_ = genEvtInfo->weight();      
+      
+    }
+
+  //-------------- Gen Particles Info -----------------------------------
+  // to be saved only for partons that start the jet -> from genJets take the costituents -> 
+    //see hypernews https://hypernews.cern.ch/HyperNews/CMS/get/csa14/49/2.html
+    //and https://twiki.cern.ch/twiki/bin/view/CMSPublic/WorkBookMiniAOD#Advanced_topics_re_clustering_ev 
+
+    // if( genParticles.isValid() ) {
+  //     edm::LogInfo("GenParticlesInfo") << "Total # GenParticles: " << genParticles->size();
+
+  //     for( reco::GenParticleCollection::const_iterator it = genParticles->begin(); it != genParticles->end(); ++it ) {
+  //       // exit from loop when you reach the required number of GenParticles
+  //       if(eta->size() >= maxSize)
+  //         break;
+
+  //       // fill in all the vectors
+  //       eta->push_back( it->eta() );
+  //       phi->push_back( it->phi() );
+  //       p->push_back( it->p() );
+  //       px->push_back( it->px() );
+  //       py->push_back( it->py() );
+  //       pz->push_back( it->pz() );
+  //       pt->push_back( it->pt() );
+  //       energy->push_back( it->energy() );
+  //       pdgId->push_back( it->pdgId() );
+  //       vx->push_back( it->vx() );
+  //       vy->push_back( it->vy() );
+  //       vz->push_back( it->vz() );
+  //       numDaught->push_back( it->numberOfDaughters() );
+  //       status->push_back( it->status() );
+      
+    
+  // 	int idx = -1;
+  // 	for( reco::GenParticleCollection::const_iterator mit = genParticles->begin(); mit != genParticles->end(); ++mit ) {
+  // 	  if( it->mother()==&(*mit) ) {
+  // 	    idx = std::distance(genParticles->begin(),mit);
+  // 	    break;
+  // 	  }
+  // 	}
+  // 	motherIndex->push_back( idx );
+  //     }
+      
+  //   }
+  // }// if MC
+
   //-------------- Trigger Info -----------------------------------
   triggerPassHisto_->Fill("totalEvents",1);
   if (triggerCache_.setEvent(iEvent,iSetup)) {
@@ -303,6 +380,10 @@ void DijetTreeProducer::analyze(edm::Event const& iEvent, edm::EventSetup const&
 	idTAK4_           ->push_back(idT);
         //tau1AK4_          ->push_back(ijet->userFloat("tau1"));
         //tau2AK4_          ->push_back(ijet->userFloat("tau2"));
+	//cutbasedJetId_      ->push_back(ijet->userInt("pileupJetIdEvaluator:cutbasedId"));
+	//fullJetId_          ->push_back(ijet->userFloat("pileupJetIdEvaluator:fullDiscriminant"));
+	//fullJetDiscriminant_->push_back(ijet->userInt("pileupJetIdEvaluator:fullId"));
+
 
 	//---- match with the pruned jet collection -----
         // double dRmin(1000);
@@ -428,6 +509,11 @@ void DijetTreeProducer::initialize()
   //tau1AK4_           ->clear();
   //tau2AK4_           ->clear();
   //dRAK4_             ->clear();
+  //cutbasedJetId_      ->clear();
+  //fullJetId_          ->clear();
+  //fullJetDiscriminant_->clear();
+
+
 
   nJetsAK8_          = -999;
   htAK8_             = -999;
@@ -456,6 +542,10 @@ void DijetTreeProducer::initialize()
   triggerResult_     ->clear();
   //----- MC -------
   npu_ = -999;
+  ptHat_ = -999; 
+  processID_ = -999; 
+  weight_ = -999;
+
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 DijetTreeProducer::~DijetTreeProducer() 

@@ -27,7 +27,7 @@ class DijetTreeProducer : public edm::EDAnalyzer
     void initialize();
     //---- configurable parameters --------   
     double ptMinAK4_,ptMinAK8_;//mjjMin_,,dEtaMax_;
-    edm::InputTag srcJetsAK4_,srcJetsAK8_,srcMET_,srcPU_,srcVrtx_;
+    edm::InputTag srcJetsAK4_,srcJetsAK8_,srcMET_,srcPU_,srcVrtx_, srcGenInfo_;
     edm::Service<TFileService> fs_;
     TTree *outTree_; 
     //---- TRIGGER -------------------------
@@ -46,10 +46,15 @@ class DijetTreeProducer : public edm::EDAnalyzer
     //---- jet variables --------------
     std::vector<float> *ptAK4_,*jecAK4_,*etaAK4_,*phiAK4_,*massAK4_,*energyAK4_,*chfAK4_,*nhfAK4_,*phfAK4_,*elfAK4_,*mufAK4_;// *massPruned_, *dR_,*tau1_,*tau2_ ;
     std::vector<int> *idLAK4_,*idTAK4_;
+    std::vector<float> *cutbasedJetId_, *fullJetId_, *fullJetDiscriminant_;
+
     std::vector<float> *ptAK8_,*jecAK8_,*etaAK8_,*phiAK8_,*massAK8_,*energyAK8_,*chfAK8_,*nhfAK8_,*phfAK8_,*elfAK8_,*mufAK8_;// *massPruned_, *dR_,*tau1_,*tau2_ ;
     std::vector<int> *idLAK8_,*idTAK8_;
     //---- MC variables ---------------
-    int npu_;
+    double npu_; 
+    float ptHat_; 
+    int processID_;
+    double weight_;
 };
 
 #endif
