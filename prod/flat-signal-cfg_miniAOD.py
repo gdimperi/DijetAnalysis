@@ -34,6 +34,19 @@ process.options = cms.untracked.PSet(
         wantSummary = cms.untracked.bool(False),
 )
 
+############## output test giulia edm format ###############
+process.out = cms.OutputModule('PoolOutputModule',                                                                                                                  
+                               fileName = cms.untracked.string('jettoolbox.root'),                                                                              
+                               outputCommands = cms.untracked.vstring(['keep *_ak4PFJetsCHS_*_*',                                                                    
+                                                                       'keep *_patJetsAK4PFCHS_*_*',                                                                  
+                                                                       'keep *_ca8PFJetsCHS_*_*',                                                                     
+                                                                       'keep *_patJetsCA8PFCHS_*_*',                                                                  
+                                                                       'keep *_ak8PFJetsCHS_*_*',                                                                     
+                                                                       'keep *_patJetsAK8PFCHS_*_*',                                                                  
+                                                                       ])                                                                                           
+                               )                                                                                                                                     
+process.endpath = cms.EndPath(process.out)    
+
 
 # ----------------------- Jet Tool Box  -----------------
 
@@ -59,6 +72,22 @@ process.ak8GenJets = process.ak4GenJets.clone(src = 'packedGenParticles', rParam
 process.ca8GenJets = process.ca4GenJets.clone(src = 'packedGenParticles', rParam = 0.8)
 
 process.fixedGridRhoFastjetAll.pfCandidatesTag = 'packedPFCandidates'
+
+# process.ak4PFJetsCHSPruned = ak5PFJetsCHSPruned.clone(
+#     src='chs'
+#     rParam = 0.4, 
+#     jetPtMin = 15.0
+#     )
+# process.ak4PFJetsCHSFiltered = ak5PFJetsCHSFiltered.clone(
+#     src='chs'
+#     rParam = 0.4, 
+#     jetPtMin = 15.0 
+#     )                                                                             
+# process.ak4PFJetsCHSTrimmed = ak5PFJetsCHSTrimmed.clone(
+#     src='chs'
+#     rParam = 0.4,
+#     jetPtMin = 15.0  
+#     )
 
 process.ak8PFJetsCHSPruned.src = 'chs'
 process.ak8PFJetsCHSTrimmed.src = 'chs'
@@ -170,10 +199,10 @@ process.inclusiveSecondaryVertexFinderTagInfos.extSVCollection = cms.InputTag('u
 process.combinedSecondaryVertex.trackMultiplicityMin = 1 #silly sv, uses un filtered tracks.. i.e. any pt
 
 process.load('FWCore.MessageLogger.MessageLogger_cfi')
-process.MessageLogger.cerr.FwkReport.reportEvery = 10
+#process.MessageLogger.cerr.FwkReport.reportEvery = 10
 process.MessageLogger.suppressWarning = cms.untracked.vstring('ecalLaserCorrFilter','manystripclus53X','toomanystripclus53X')
-process.options = cms.untracked.PSet( wantSummary = cms.untracked.bool(True) )
-process.options.allowUnscheduled = cms.untracked.bool(True)
+#process.options = cms.untracked.PSet( wantSummary = cms.untracked.bool(True) )
+#process.options.allowUnscheduled = cms.untracked.bool(True)
 
 
 #Load the toolbox
@@ -189,9 +218,9 @@ process.load('RecoJets.JetProducers.jettoolbox_cff')
 #------------- Recluster Gen Jets to access the constituents -------
 #already in toolbox, just add keep statements
 
-# process.out.outputCommands.append("keep *_ak4GenJets_*_*")
-# process.out.outputCommands.append("keep *_ak8GenJets_*_*")
-# process.out.outputCommands.append("keep *_ca8GenJets_*_*")
+process.out.outputCommands.append("keep *_ak4GenJets_*_*")
+process.out.outputCommands.append("keep *_ak8GenJets_*_*")
+process.out.outputCommands.append("keep *_ca8GenJets_*_*")
 
 ##-------------------- Define the source  ----------------------------
 
@@ -205,6 +234,61 @@ process.source = cms.Source("PoolSource",
 
 )
 
+# #Keep statements for valueMaps (link Reco::Jets to associated quantities)
+# #You don't have to keep them to deswizzle below
+
+#process.out.outputCommands += ['keep *_pileupJetIdEvaluator_*_*',
+#                       'keep *_QGTagger_*_*']
+
+process.out.outputCommands += ['keep *_NjettinessCA8_*_*',
+                               'keep *_NjettinessAK8_*_*',
+                               
+#                                'keep *_QJetsAdderCA8_*_*',
+                               'keep *_ca8PFJetsCHSPrunedLinks_*_*',
+                               'keep *_ca8PFJetsCHSTrimmedLinks_*_*',
+                               'keep *_ca8PFJetsCHSFilteredLinks_*_*',
+                               'keep *_cmsTopTagPFJetsCHSLinksCA8_*_*',
+#                                'keep *_QJetsAdderAK8_*_*',
+                               'keep *_ak8PFJetsCHSPrunedLinks_*_*',
+                               'keep *_ak8PFJetsCHSTrimmedLinks_*_*',
+                               'keep *_ak8PFJetsCHSFilteredLinks_*_*',
+                               'keep *_cmsTopTagPFJetsCHSLinksAK8_*_*',
+                               ]
+
+
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#Deswizzle valueMaps and attach to PAT::Jets as userFloats
+
+#process.patJetsAK4PFCHS.userData.userFloats.src += ['pileupJetIdEvaluator:fullDiscriminant','QGTagger:qgLikelihood']
+#process.patJetsAK4PFCHS.userData.userInts.src   += ['pileupJetIdEvaluator:cutbasedId','pileupJetIdEvaluator:fullId']
+
+#run these modules before pat in the sequence
+
+process.patJetsCA8PFCHS.userData.userFloats.src += ['NjettinessCA8:tau1',
+                                                    'NjettinessCA8:tau2',
+                                                    'NjettinessCA8:tau3',
+#                                                    'QJetsAdderCA8:QjetsVolatility',
+                                                    'ca8PFJetsCHSPrunedLinks',
+                                                    'ca8PFJetsCHSTrimmedLinks',
+                                                    'ca8PFJetsCHSFilteredLinks',
+                                                    'cmsTopTagPFJetsCHSLinksCA8'
+                                                    ]
+
+
+
+process.patJetsAK8PFCHS.userData.userFloats.src += ['NjettinessAK8:tau1',
+                                                    'NjettinessAK8:tau2',
+                                                    'NjettinessAK8:tau3',
+ #                                                   'QJetsAdderAK8:QjetsVolatility',
+                                                    'ak8PFJetsCHSPrunedLinks',
+                                                    'ak8PFJetsCHSTrimmedLinks',
+                                                    'ak8PFJetsCHSFilteredLinks',
+                                                    'cmsTopTagPFJetsCHSLinksAK8'
+                                                    ]
+
+
+
+
 
 ##-------------------- User analyzer  --------------------------------
 
@@ -213,10 +297,15 @@ process.dijets     = cms.EDAnalyzer('DijetTreeProducer',
   ## JETS/MET ########################################
   jetsAK4             = cms.InputTag('patJetsAK4PFCHS'),
   jetsAK8         = cms.InputTag('patJetsAK8PFCHS'),
+  jetsCA8         = cms.InputTag('patJetsCA8PFCHS'),
+  genJetsAK4             = cms.InputTag('ak4GenJets'),
+  genJetsAK8         = cms.InputTag('ak8GenJets'),
+  genJetsCA8         = cms.InputTag('ca8GenJets'),
   met              = cms.InputTag('slimmedMETs'),
   vtx              = cms.InputTag('offlineSlimmedPrimaryVertices'),
   ptMinAK4         = cms.double(10),
   ptMinAK8         = cms.double(10),
+  ptMinCA8         = cms.double(10),
   #mjjMin           = cms.double(700),
   #dEtaMax          = cms.double(1.3),
 
@@ -251,39 +340,7 @@ process.dijets     = cms.EDAnalyzer('DijetTreeProducer',
 )
 
 
-# #Keep statements for valueMaps (link Reco::Jets to associated quantities)
-# #You don't have to keep them to deswizzle below
-
-#process.out.outputCommands += ['keep *_pileupJetIdEvaluator_*_*',
-#                       'keep *_QGTagger_*_*']
-
-# process.out.outputCommands += ['keep *_NjettinessCA8_*_*',
-#                                'keep *_QJetsAdderCA8_*_*',
-#                                'keep *_ca8PFJetsCHSPrunedLinks_*_*',
-#                                'keep *_ca8PFJetsCHSTrimmedLinks_*_*',
-#                                'keep *_ca8PFJetsCHSFilteredLinks_*_*',
-#                                'keep *_cmsTopTagPFJetsCHSLinksCA8_*_*',
-#                                ]
-
-
-#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-#Deswizzle valueMaps and attach to PAT::Jets as userFloats
-
-#process.patJetsAK4PFCHS.userData.userFloats.src += ['pileupJetIdEvaluator:fullDiscriminant','QGTagger:qgLikelihood']
-#process.patJetsAK4PFCHS.userData.userInts.src   += ['pileupJetIdEvaluator:cutbasedId','pileupJetIdEvaluator:fullId']
-
-process.patJetsCA8PFCHS.userData.userFloats.src += ['NjettinessCA8:tau1','NjettinessCA8:tau2','NjettinessCA8:tau3',
-                                                    'QJetsAdderCA8:QjetsVolatility',
-                                                    'ca8PFJetsCHSPrunedLinks','ca8PFJetsCHSTrimmedLinks','ca8PFJetsCHSFilteredLinks',
-                                                    'cmsTopTagPFJetsCHSLinksCA8']
-
-process.patJetsAK8PFCHS.userData.userFloats.src += ['NjettinessAK8:tau1','NjettinessAK8:tau2','NjettinessAK8:tau3',
-                                                    'QJetsAdderAK8:QjetsVolatility',
-                                                    'ak8PFJetsCHSPrunedLinks','ak8PFJetsCHSTrimmedLinks','ak8PFJetsCHSFilteredLinks',
-                                                    'cmsTopTagPFJetsCHSLinksAK8']
-
-
-
+# ------------------ path --------------------------
 
 process.p = cms.Path(process.chs * 
                      process.ak4PFJetsCHS *
@@ -293,46 +350,29 @@ process.p = cms.Path(process.chs *
                      #process.patJetCorrFactorsAK4PFCHS* 
                      process.ak8PFJetsCHS *
                      process.ak8GenJets *
+                     process.NjettinessAK8 *
+                     #process.QJetsAdderAK8 * #questo rallenta - da capire
+                     process.ak8PFJetsCHSPrunedLinks *
+                     process.ak8PFJetsCHSFilteredLinks *
+                     process.ak8PFJetsCHSTrimmedLinks *
                      process.patJetsAK8PFCHS *
-                     #process.patJetPartonMatchAK8PFCHS *
-                     #process.patJetCorrFactorsAK8PFCHS *
                      process.ca8PFJetsCHS *
                      process.ca8GenJets * 
+                     process.NjettinessCA8 *
+                     #process.QJetsAdderCA8 * #questo rallenta - da capire
+                     process.ca8PFJetsCHSPrunedLinks *
+                     process.ca8PFJetsCHSFilteredLinks *
+                     process.ca8PFJetsCHSTrimmedLinks *
                      process.patJetsCA8PFCHS *    
-                     #process.patJetPartonMatchCA8PFCHS *
-                     #process.patJetCorrFactorsCA8PFCHS 
-
-                     #process.ak4JetTracksAssociatorAtVertexPF *
-                     #process.ak8JetTracksAssociatorAtVertexPF *
-                     #process.ca8JetTracksAssociatorAtVertexPF *
-                     #process.impactParameterTagInfos *
-                     #process.inclusiveSecondaryVertexFinderTagInfos *
-                     #process.combinedSecondaryVertex *
 
                      #process.pileupJetId        ##recipe not working for now
                      #process.puJetIdSequence    ##recipe not working for now
                      #process.pileupJetIdCalculator *  ##recipe not working for now
                      #process.pileupJetIdEvaluator     ##recipe not working for now
                      #process.QGTagger *
-                     #process.NjettinessCA8 *
-                     #process.NjettinessAK8 
-                     #process.QJetsAdderCA8 *
-                     #process.QJetsAdderAK8
                      process.dijets 
                      ) 
 
 
 
 
-# ############## output pat test giulia ###############
-# process.out = cms.OutputModule('PoolOutputModule',                                                                                                                  
-#                                fileName = cms.untracked.string('jettoolbox.root'),                                                                              
-#                                outputCommands = cms.untracked.vstring(['keep *_ak4PFJetsCHS_*_*',                                                                    
-#                                                                        'keep *_patJetsAK4PFCHS_*_*',                                                                  
-#                                                                        'keep *_ca8PFJetsCHS_*_*',                                                                     
-#                                                                        'keep *_patJetsCA8PFCHS_*_*',                                                                  
-#                                                                        'keep *_ak8PFJetsCHS_*_*',                                                                     
-#                                                                        'keep *_patJetsAK8PFCHS_*_*',                                                                  
-#                                                                        ])                                                                                           
-#                                )                                                                                                                                     
-# process.endpath = cms.EndPath(process.out)    
