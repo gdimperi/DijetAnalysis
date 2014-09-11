@@ -206,7 +206,8 @@ process.MessageLogger.suppressWarning = cms.untracked.vstring('ecalLaserCorrFilt
 
 
 #Load the toolbox
-process.load('RecoJets.JetProducers.jettoolbox_cff')
+#process.load('RecoJets.JetProducers.jettoolbox_cff')
+process.load('CMSROMA.DijetAnalysis.jettoolbox_cff')
 
 
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
