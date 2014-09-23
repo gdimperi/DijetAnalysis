@@ -6,7 +6,7 @@ from math import *
 import optparse
 usage = "usage: %prog [options]"
 parser = optparse.OptionParser(usage)
-parser.add_option("--sample",action="store",type="string",dest="sample",default='RS2000')
+parser.add_option("--sample",action="store",type="string",dest="sample",default='signal_M1000')
 parser.add_option("--trigger",action="store",type="string",dest="trigger",default='signal')
 
 (options, args) = parser.parse_args()
@@ -21,9 +21,8 @@ if trigger not in trigger_options:
   trigger = 'signal'
 
 ## ---- CERN -------
-PATH = 'root://eoscms//eos/cms/store/cmst3/group/das2014/EXODijetsLE/'
-## ---- FNAL -------
-# PATH = '/eos/uscms/store/user/cmsdas/2014/EXODijetsLE/'
+PATH = '/cmshome/gdimperi//Dijet/CMSSW_7_1_0_pre9/src/CMSROMA/DijetAnalysis/prod/'
+
 
 inputf  = PATH+'dijetTree_'+sample+'.root'
 outputf = 'dijetHisto_'+sample+'_'+trigger+'.root'
@@ -89,38 +88,56 @@ for i in xrange(N):
 
   cut_trigger      = True 
   cut_mass         = True
-  cut_dEtajj       = events.dEtajj < 1.3
-  cut_leptonVeto   = events.jetElf[0]<0.7 and events.jetElf[1]<0.7 and events.jetMuf[0]<0.7 and events.jetMuf[1]<0.7
-  cut_eta          = fabs(events.jetEta[0])<2.5 and fabs(events.jetEta[1])<2.5
-  cut_pt           = events.jetPt[1]>40
+  cut_dEtajj       = events.dEtajjCA8 < 1.3
+  cut_leptonVeto   = events.jetElfCA8[0]<0.7 and events.jetElfCA8[1]<0.7 and events.jetMufCA8[0]<0.7 and events.jetMufCA8[1]<0.7
+  cut_eta          = fabs(events.jetEtaCA8[0])<2.5 and fabs(events.jetEtaCA8[1])<2.5
+  cut_pt           = events.jetPtCA8[1]>40
   cut_substructure = (
-    events.jetMassPruned[0] > 60 and 
-    events.jetMassPruned[0] < 100 and 
-    events.jetMassPruned[1] > 60 and 
-    events.jetMassPruned[1] < 100 and 
-    events.jetTau2[0]/events.jetTau1[0] < 0.5 and 
-    events.jetTau2[1]/events.jetTau1[1] < 0.5)
+    events.jetMassPrunedCA8[0] > 60 and 
+    events.jetMassPrunedCA8[0] < 100 and 
+    events.jetMassPrunedCA8[1] > 60 and 
+    events.jetMassPrunedCA8[1] < 100 and 
+    events.jetTau2CA8[0]/events.jetTau1CA8[0] < 0.5 and 
+    events.jetTau2CA8[1]/events.jetTau1CA8[1] < 0.5)
 
   if trigger == 'signal':
     cut_trigger = events.triggerResult[0] or events.triggerResult[1] or events.triggerResult[2] or events.triggerResult[3]
-    cut_mass = events.mjj > 890
+    cut_mass = events.mjjCA8 > 890
   elif trigger == 'ref':
     cut_trigger = events.triggerResult[4]
-    cut_mass = events.mjj > 0
+    cut_mass = events.mjjCA8 > 0
   elif trigger == 'refSig':
     cut_trigger = events.triggerResult[4] and (events.triggerResult[0] or events.triggerResult[1] or events.triggerResult[2] or events.triggerResult[3])
-    cut_mass = events.mjj > 0
+    cut_mass = events.mjjCA8 > 0
     
+#################################################
+
+# ---------------- test plots  (to be changed) ---------------------
+
+###################################################
+# just turn off all the cuts
+
+  cut_trigger      = True 
+  cut_mass         = True
+  cut_dEtajj       = True
+  cut_leptonVeto   = True
+  cut_eta          = True
+  cut_pt           = True
+  cut_substructure = True
+ 
+
+#--------------------------------------------------------------
+
   if (cut_trigger and cut_dEtajj and cut_mass and cut_leptonVeto and cut_eta and cut_pt):
     #---- set the event variables ----
-    eventVar = [events.ht,events.mjj,events.dEtajj,events.dPhijj,events.metSig]
+    eventVar = [events.htCA8,events.mjjCA8,events.dEtajjCA8,events.dPhijjCA8,events.metSig]
     for k in xrange(len(histEventVar)):
       histEventVar[k].Fill(eventVar[k])
       if cut_substructure:
         histEventVarSub[k].Fill(eventVar[k])
     for j in xrange(2):
       #---- set the jet variables ----
-      jetVar = [events.jetTau2[j]/events.jetTau1[j],events.jetPt[j],events.jetEta[j],events.jetPhi[j],events.jetMass[j],events.jetMassPruned[j]]
+      jetVar = [events.jetTau2CA8[j]/events.jetTau1CA8[j],events.jetPtCA8[j],events.jetEtaCA8[j],events.jetPhiCA8[j],events.jetMassCA8[j],events.jetMassPrunedCA8[j]]
       for k in xrange(len(histJetVar)):
         histJetVar[k].Fill(jetVar[k])
         if cut_substructure:
