@@ -45,6 +45,7 @@ DijetTreeProducer::DijetTreeProducer(edm::ParameterSet const& cfg)
 
   ptMinAK4_           = cfg.getParameter<double>                    ("ptMinAK4");
   ptMinAK8_           = cfg.getParameter<double>                    ("ptMinAK8");
+  ptMinCA8_           = cfg.getParameter<double>                    ("ptMinCA8");
   //mjjMin_             = cfg.getParameter<double>                    ("mjjMin");
   //dEtaMax_            = cfg.getParameter<double>                    ("dEtaMax");
   triggerCache_       = triggerExpression::Data(cfg.getParameterSet("triggerConfiguration"),consumesCollector());
@@ -611,7 +612,7 @@ void DijetTreeProducer::analyze(edm::Event const& iEvent, edm::EventSetup const&
         // massPruned_->push_back(auxm);
         // dR_->push_back(dRmin);
 	
-      }// matching with pruned jets
+      }
     }// jet loop  
     htAK8_     = htAK8;
     if (nJetsAK8_ > 1) { //assuming jets are ordered by pt in the pat collection
@@ -619,6 +620,7 @@ void DijetTreeProducer::analyze(edm::Event const& iEvent, edm::EventSetup const&
       dEtajjAK8_ = fabs((*etaAK8_)[0]-(*etaAK8_)[1]); 
       dPhijjAK8_ = fabs(deltaPhi((*phiAK8_)[0],(*phiAK8_)[1]));
     }
+
     
     // CA8
     nJetsCA8_ = 0;
@@ -658,7 +660,8 @@ void DijetTreeProducer::analyze(edm::Event const& iEvent, edm::EventSetup const&
         tau2CA8_          ->push_back(ijet->userFloat("NjettinessCA8:tau2"));
         tau3CA8_          ->push_back(ijet->userFloat("NjettinessCA8:tau3"));
 	massPrunedCA8_    ->push_back(ijet->userFloat("ca8PFJetsCHSPrunedLinks"));
-      }	
+	
+      } 
     }// jet loop  
     htCA8_     = htCA8;
     if (nJetsCA8_ > 1) { //assuming jets are ordered by pt in the pat collection
@@ -666,7 +669,7 @@ void DijetTreeProducer::analyze(edm::Event const& iEvent, edm::EventSetup const&
       dEtajjCA8_ = fabs((*etaCA8_)[0]-(*etaCA8_)[1]); 
       dPhijjCA8_ = fabs(deltaPhi((*phiCA8_)[0],(*phiCA8_)[1]));
     }
-
+  
     
     //-------------- Gen Jets Info -----------------------------------
 
@@ -798,6 +801,32 @@ void DijetTreeProducer::initialize()
   tau1AK8_           ->clear();
   tau2AK8_           ->clear();
   //dRAK8_             ->clear();
+  
+  
+  nJetsCA8_          = -999;
+  htCA8_             = -999;
+  mjjCA8_            = -999; 
+  dEtajjCA8_         = -999; 
+  dPhijjCA8_         = -999;
+  ptCA8_             ->clear();
+  etaCA8_            ->clear();
+  phiCA8_            ->clear();
+  massCA8_           ->clear();
+  energyCA8_         ->clear();
+  chfCA8_            ->clear();
+  nhfCA8_            ->clear();
+  phfCA8_            ->clear();
+  elfCA8_            ->clear();
+  mufCA8_            ->clear();
+  jecCA8_            ->clear();
+  jecCA8_            ->clear();
+  idLCA8_            ->clear();
+  idTCA8_            ->clear();
+  massPrunedCA8_     ->clear();
+  tau1CA8_           ->clear();
+  tau2CA8_           ->clear();
+  //dRCA8_             ->clear();
+
 
   triggerResult_     ->clear();
   
